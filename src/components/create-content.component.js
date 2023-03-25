@@ -17,7 +17,7 @@ function CrPuContent() {
 
   let checkBtn
   let form
-  let link
+  let changeLink
   
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -28,9 +28,9 @@ function CrPuContent() {
     const userId = JSON.parse(localStorage.getItem('user')).id
     
     if (checkBtn.context._errors.length === 0) {
-      if(stateContent) {link = 'roles/crud/create'}
-      else {link = 'crud/create'}
-      axios.post(http + link, { userId, description, linkImage, linkVideo }, { headers: authHeader() })
+      if(stateContent) {changeLink = 'roles/crud/create'}
+      else {changeLink = 'crud/create'}
+      axios.post(http + changeLink, { userId, description, linkImage, linkVideo }, { headers: authHeader() })
       .then(
         res => {
           setMessage(res.data.message)
