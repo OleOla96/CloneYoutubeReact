@@ -102,27 +102,28 @@ function CrPuContent() {
                 />
               </div>
 
-              <div className="input-radio">
-                <input 
-                  type="radio"
-                  name="sate"
-                  value={0}
-                  onClick={e => setStateContent(e.target.value)}
-                  defaultChecked
-                  id="public"
-                />
-                <label htmlFor="public" className="radio">&ensp;Public</label>
-              </div>
-
-              <div className="input-radio right">
-                <input 
-                  type="radio"
-                  name="sate"
-                  value={1}
-                  onClick={e => setStateContent(e.target.value)}
-                  id="private"
-                />
-                <label htmlFor="private" className="radio">&ensp;Private</label>
+              <div className="group-input-radio">
+                <span className="form-input-radio">
+                  <input 
+                    type="radio"
+                    name="sate"
+                    value={0}
+                    onClick={e => setStateContent(e.target.value)}
+                    defaultChecked
+                    id="public"
+                  />
+                  <label htmlFor="public" className="radio">&ensp;Public</label>
+                </span>
+                <span className="form-input-radio">
+                  <input 
+                    type="radio"
+                    name="sate"
+                    value={1}
+                    onClick={e => setStateContent(e.target.value)}
+                    id="private"
+                  />
+                  <label htmlFor="private" className="radio">&ensp;Private</label>
+                </span>
               </div>
 
               <div className="form-group">

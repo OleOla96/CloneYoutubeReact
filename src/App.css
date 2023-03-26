@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
 }
@@ -42,18 +48,15 @@ label {
   margin-top: 10px;
 }
 
-label.radio {
-  display: inline-block;
+.group-input-radio {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
 }
 
-
-.input-radio {
+.group-input-radio .form-input-radio .radio {
   display: inline-block;
-  width: 50%;
-}
-
-.input-radio.right {
-  text-align: right;
+  margin: 0;
 }
 
 .card-container.card-validate {
@@ -88,4 +91,20 @@ label.radio {
   border-radius: 10px;
   width: 300px;
   height: 150px;
+}
+
+.layout {
+  display: flex;
+}
+
+.layoutCenter {
+  margin: auto;
+}
+
+.button-delete {
+  color: red;
+}
+
+.size-icon {
+  font-size: 24px;
 }

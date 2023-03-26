@@ -1,3 +1,4 @@
+
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Outlet, Link } from "react-router-dom"
 import { useState, useEffect } from "react"
@@ -7,16 +8,27 @@ function Layout1() {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false)
   const [showAdminBoard, setShowAdminBoard] = useState(false)
   const [currentUser, setCurrentUser] = useState(undefined)
-    
+  const [pageLogin, setPageLogin] = useState(true)
+  
+
   useEffect(
     () => {
       const user = JSON.parse(localStorage.getItem('user'))
       if (user) {
-        setCurrentUser(user);
-        setShowModeratorBoard(user.roles.includes("ROLE MODERATOR"));
-        setShowAdminBoard(user.roles.includes("ROLE ADMIN"));
+        setCurrentUser(user)
+        setShowModeratorBoard(user.roles.includes("ROLE MODERATOR"))
+        setShowAdminBoard(user.roles.includes("ROLE ADMIN"))
+
       }
     }, [])
+
+  const handleClickSignin = () => {
+    setPageLogin(false)
+  }
+
+  const handleClickHome = () => {
+    setPageLogin(true)
+  }
   
   const logOut = () => {
     localStorage.removeItem("user");
@@ -28,10 +40,12 @@ function Layout1() {
   return (
     <div>
       <nav className="navbar sticky-top navbar-expand navbar-dark bg-dark">
-        <Link to={"/"} className="navbar-brand">
-          <i className="fab fa-react"></i>
-        </Link>
         <div className="navbar-nav mr-auto">
+          <li className="nav-item">
+            <Link to={"/"} className="nav-link" onClick={handleClickHome}>
+              <i className="fa fa-home size-icon"></i>
+            </Link>
+          </li>
           {showModeratorBoard && (
             <li className="nav-item">
               <Link to={"roles/mod"} className="nav-link">
@@ -71,30 +85,31 @@ function Layout1() {
             </li>
             <li className="nav-item">
               <Link to={"/myprofile"} className="nav-link">
-                My profile
+                <i className="fa fa-user-circle-o size-icon"></i>
               </Link>
             </li>
             <li className="nav-item">
               <a href="/login" className="nav-link" 
               onClick={logOut}
               >
-                LogOut
+                <i className="material-icons">exit_to_app</i>
               </a>
             </li>
           </div>
         ) : (
           <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/login"} className="nav-link">
-                Login
+            {pageLogin && (<li className="nav-item">
+              <Link to={"/login"} className="nav-link layout" onClick={handleClickSignin}>
+                <span className="layoutCenter">Sign-in&nbsp;</span>
+                <i className="fa fa-sign-in" style={{fontSize: '24px'}}></i>
               </Link>
-            </li>
-
-            <li className="nav-item">
-              <Link to={"/register"} className="nav-link">
-                Sign Up
+            </li>)}
+            {/* <li className="nav-item">
+              <Link to={"/contact"} className="nav-link layout">
+                <span className="layoutCenter">Contact&nbsp;</span>
+                <i className="fa fa-question-circle-o" style={{fontSize: '24px'}}></i>
               </Link>
-            </li>
+            </li> */}
           </div>
         )}
       </nav>

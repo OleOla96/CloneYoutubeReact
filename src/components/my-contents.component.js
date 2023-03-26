@@ -2,13 +2,12 @@
 import { useState, useEffect } from "react"
 import authHeader from '../services/auth-header'
 import { Link } from "react-router-dom"
-import Button from 'react-bootstrap/Button'
 import axios from "axios"
 
 const http = 'http://localhost:8080/crud/'
 
 function MyContents () {
-  const [content, setContent] = useState([])
+  const [content, setContent] = useState(undefined)
   // const [message, setMessage] = useState('')
   const [state, setState] = useState(false)
   
@@ -18,8 +17,7 @@ function MyContents () {
       .then(res => setContent(res.data.data))
   }, [state])
 
-  const handleDelete = (e) => {
-    const id = e.target.value
+  const handleDelete = (id) => {
     axios.delete(http + `/delete/${id}`, {headers: authHeader()})
       .then(() => setState(!state))
   }
@@ -47,10 +45,14 @@ function MyContents () {
               <td>{data.createdAt}</td>
               <td>{data.updatedAt}</td>
               <td>
-                <Link to={`editcontent/${data.id}`} className="btn btn-link">Edit</Link>
+                <Link to={`editcontent/${data.id}`} className="btn btn-link size-icon">
+                  <i className="fa fa-edit"></i>
+                </Link>
               </td>
               <td>
-                <Button onClick={(e) => handleDelete(e)} value={data.id} variant="danger">Delete</Button>
+                <span className="btn btn-link button-delete size-icon" onClick={() => handleDelete(data.id)}>
+                  <i className="fa fa-trash-o"></i>
+                </span>
               </td>
             </tr>
             ))) : (

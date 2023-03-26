@@ -31,7 +31,7 @@ function BoardUser() {
           title="YouTube video player" frameBorder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
           allowFullScreen></video> */}
-          <img src={data.linkImage} width="640" height="360" alt={data.name}/>
+          <img src={`${data.linkImage}`} width="640" height="360" alt={data.name}/>
           <h5>{data.name}</h5>
         </div>
         ))) : (
