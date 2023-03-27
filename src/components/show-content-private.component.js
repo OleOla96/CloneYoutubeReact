@@ -1,8 +1,9 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
+import authHeader from '../services/auth-header'
 import { http } from "../common/http"
 
-function Learn() {
+function ContentPrivate() {
   const [showVideo, setShowVideo] = useState([])
 
   useEffect(
@@ -10,7 +11,8 @@ function Learn() {
       const getPathname = window.location.pathname
       const getId = getPathname.split('/')
       const id = getId.slice(-1)
-      axios.get(http + `showall/${id}`).then(res => {
+      axios.get(http + `roles/user/${id}`, {headers: authHeader()})
+      .then(res => {
         setShowVideo(res.data.data)
       })
     }, [])
@@ -20,7 +22,7 @@ function Learn() {
       <div className="mt-4">
         <div className="col-lg-9">
           <iframe width="640" height="360" 
-          src={`https://www.youtube.com/watch?v=${showVideo.linkVideo}`} 
+          src={`https://www.youtube.com/embed/${showVideo.linkVideo}`} 
           title={showVideo.description} frameBorder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
           allowFullScreen></iframe>
@@ -31,4 +33,4 @@ function Learn() {
   )
 }
 
-export default Learn
+export default ContentPrivate

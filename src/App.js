@@ -6,6 +6,7 @@ import Login from "./components/login.component"
 import Register from "./components/register.component"
 import Home from "./components/home.component"
 import Learn from "./components/learn.component"
+import ContentPrivate from "./components/show-content-private.component"
 import Profile from "./components/profile.component"
 import BoardUser from "./components/board-user.component"
 import BoardModerator from "./components/board-moderator.component"
@@ -32,6 +33,7 @@ function App() {
           </Route>
           <Route path="createcontent" element={<CreateContent />} />
           <Route path="roles/user" element={<BoardUser />} />
+          <Route path="roles/user/:id" element={<ContentPrivate />} />
           <Route path="roles/mod" element={<BoardModerator />} />
           <Route path="roles/admin" element={<BoardAdmin />} />
           <Route path="*" element={<Home />} />

@@ -7,19 +7,40 @@ import axios from "axios"
 const http = 'http://localhost:8080/crud/'
 
 function MyContents () {
-  const [content, setContent] = useState(undefined)
-  // const [message, setMessage] = useState('')
+  const [content, setContent] = useState([])
+  const [message, setMessage] = useState('')
+  const [successful, setSuccessful] = useState(false)
   const [state, setState] = useState(false)
   
   useEffect(() => {
     const userId = JSON.parse(localStorage.getItem('user')).id
     axios.get(http + `mycontents/${userId}`, {headers: authHeader()})
-      .then(res => setContent(res.data.data))
+      .then(res => {
+        setContent(res.data.data)})
   }, [state])
 
   const handleDelete = (id) => {
-    axios.delete(http + `/delete/${id}`, {headers: authHeader()})
-      .then(() => setState(!state))
+    const text = "Press a button!\nEither OK or Cancel."
+    window.confirm(text)
+    if (window.confirm(text) === true) {
+      axios.delete(http + `/delete/${id}`, {headers: authHeader()})
+      .then( res => {
+        setState(!setState)
+        setMessage(res.data.message)
+        setSuccessful(true)
+      },
+        error => {
+          const resMessage =
+            (error.res &&
+              error.res.data &&
+              error.res.data.message) ||
+            error.message ||
+            error.toString()
+            setMessage(resMessage)
+            setSuccessful(false) 
+        }
+      )
+    }
   }
 
   return (
@@ -36,8 +57,7 @@ function MyContents () {
           </tr>
         </thead>
         <tbody>
-          {content ? (
-            content.map(data => (
+            {content.map(data => (
             <tr key={data.id}>
               <td>{data.id}</td>
               <td>{data.description}</td>
@@ -55,8 +75,20 @@ function MyContents () {
                 </span>
               </td>
             </tr>
-            ))) : (
-            window.alert('Your content is empty!')
+            ))}
+             {message && (
+            <div className="">
+              <div
+                className={
+                  successful
+                    ? "alert alert-success"
+                    : "alert alert-danger"
+                }
+                role="alert"
+              >
+                {message}
+              </div>
+            </div>
           )}
         </tbody>
       </table>
