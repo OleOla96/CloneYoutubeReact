@@ -3,8 +3,8 @@ import { useState, useEffect } from "react"
 import authHeader from '../services/auth-header'
 import { Link } from "react-router-dom"
 import axios from "axios"
+import { http } from "../common/http"
 
-const http = 'http://localhost:8080/crud/'
 
 function MyContents () {
   const [content, setContent] = useState([])
@@ -14,7 +14,7 @@ function MyContents () {
   
   useEffect(() => {
     const userId = JSON.parse(localStorage.getItem('user')).id
-    axios.get(http + `mycontents/${userId}`, {headers: authHeader()})
+    axios.get(http + `crud/mycontents/${userId}`, {headers: authHeader()})
       .then(res => {
         setContent(res.data.data)})
   }, [state])
@@ -23,7 +23,7 @@ function MyContents () {
     const text = "Press a button!\nEither OK or Cancel."
     window.confirm(text)
     if (window.confirm(text) === true) {
-      axios.delete(http + `/delete/${id}`, {headers: authHeader()})
+      axios.delete(http + `crud/delete/${id}`, {headers: authHeader()})
       .then( res => {
         setState(!setState)
         setMessage(res.data.message)
@@ -59,7 +59,7 @@ function MyContents () {
         <tbody>
             {content.map(data => (
             <tr key={data.id}>
-              <td>{data.id}</td>
+              <td className="">{data.id}</td>
               <td>{data.description}</td>
               <td>{data.linkImage}</td>
               <td>{data.createdAt}</td>

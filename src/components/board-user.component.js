@@ -8,9 +8,10 @@ function BoardUser() {
   const [content, setContent] = useState([])
 
   useEffect(() => {
-    axios.get(http + 'roles/user', {headers: authHeader()})
+    const userId = JSON.parse(localStorage.getItem('user')).id
+    axios.get(http + `roles/${userId}`, {headers: authHeader()})
     .then(res => {
-      setContent(res.data.data)
+      setContent(res.data)
     },error => {
       setContent(
         (error.response &&
@@ -19,8 +20,10 @@ function BoardUser() {
         error.message ||
         error.toString()
       )}
-    )}, []  
+    )}, []
   )
+
+  console.log(content)
 
   return (
     <div className="container mt-3">

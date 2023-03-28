@@ -8,15 +8,18 @@ function ContentPrivate() {
 
   useEffect(
     () => {
+      const userId = JSON.parse(localStorage.getItem('user')).id
       const getPathname = window.location.pathname
       const getId = getPathname.split('/')
       const id = getId.slice(-1)
-      axios.get(http + `roles/user/${id}`, {headers: authHeader()})
+      axios.get(http + `roles/${userId}/${id}`, { headers: authHeader() })
       .then(res => {
         setShowVideo(res.data.data)
       })
     }, [])
   
+  console.log(showVideo)
+
   return (
     <div className="container">
       <div className="mt-4">

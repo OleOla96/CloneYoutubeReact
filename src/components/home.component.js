@@ -14,6 +14,8 @@ function Home() {
       })
     }, [])
 
+  console.log(publicContent)
+
   return (
     <div className="container mt-3">
       {publicContent ? (

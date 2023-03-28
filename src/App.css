@@ -105,6 +105,14 @@ label {
   color: red;
 }
 
+.content-center-row {
+  display: flex;
+}
+
 .size-icon {
   font-size: 24px;
+}
+
+.content-center {
+  align-self: center;
 }

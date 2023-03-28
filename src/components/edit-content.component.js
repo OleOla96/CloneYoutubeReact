@@ -10,7 +10,8 @@ import { required } from "../common/validation"
 
 function EditContent() {
   const [description, setDescription] = useState('')
-  const [linkimage, setLinkimage] = useState('')
+  const [linkImage, setLinkImage] = useState('')
+  const [linkVideo, setLinkVideo] = useState('')
   const [successful, setSuccessful] = useState(false)
   const [message, setMessage] = useState('')
 
@@ -28,7 +29,7 @@ function EditContent() {
 
     form.validateAll()
     if (checkBtn.context._errors.length === 0) {
-      axios.put(http + `crud/update/${id}`, { description, linkimage }, { headers: authHeader() })
+      axios.put(http + `crud/update/${id}`, { description, linkImage, linkVideo }, { headers: authHeader() })
       .then(
         res => {
           setMessage(res.data.message)
@@ -54,7 +55,7 @@ function EditContent() {
         Edit Content
       </h1>
       <div className="col-md-12">
-        <div className="card card-container">
+        <div className="card-validate card-container">
           <Form
             onSubmit={handleRegister}
             ref={c => {
@@ -68,7 +69,7 @@ function EditContent() {
                 <Input
                   type="text"
                   className="form-control"
-                  name="description"
+                  id="description"
                   value={description}
                   onChange={e => setDescription(e.target.value)}
                   validations={[required]}
@@ -76,13 +77,25 @@ function EditContent() {
               </div>
 
               <div className="form-group">
-                <label htmlFor="linkimage">Link Image</label>
+                <label htmlFor="linkImage">Link Image</label>
                 <Input
                   type="text"
                   className="form-control"
-                  name="linkimage"
-                  value={linkimage}
-                  onChange={e => setLinkimage(e.target.value)}
+                  id="linkImage"
+                  value={linkImage}
+                  onChange={e => setLinkImage(e.target.value)}
+                  validations={[required]}
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="linkVideo">Link Video</label>
+                <Input
+                  type="text"
+                  className="form-control"
+                  id="linkvideo"
+                  value={linkVideo}
+                  onChange={e => setLinkVideo(e.target.value)}
                   validations={[required]}
                 />
               </div>
