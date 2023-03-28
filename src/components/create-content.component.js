@@ -7,17 +7,17 @@ import authHeader from "../services/auth-header"
 import { http } from "../common/http"
 import { required } from "../common/validation"
 
-function CrPuContent() {
+function CreateContent() {
+  const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [linkImage, setLinkImage] = useState('')
   const [linkVideo, setLinkVideo] = useState('')
   const [successful, setSuccessful] = useState(false)
+  const [stateContent, setStateContent] = useState(false)
   const [message, setMessage] = useState('')
-  const [stateContent, setStateContent] = useState(0)
 
   let checkBtn
   let form
-  let changeLink
   
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -28,9 +28,15 @@ function CrPuContent() {
     const userId = JSON.parse(localStorage.getItem('user')).id
     
     if (checkBtn.context._errors.length === 0) {
-      if(stateContent) {changeLink = 'roles/crud/create'}
-      else {changeLink = 'crud/create'}
-      axios.post(http + changeLink, { userId, description, linkImage, linkVideo }, { headers: authHeader() })
+      axios.post(http + 'crud/create', { 
+        userId, 
+        title, 
+        description, 
+        linkImage, 
+        linkVideo, 
+        stateContent 
+      }, 
+      { headers: authHeader() })
       .then(
         res => {
           setMessage(res.data.message)
@@ -65,6 +71,18 @@ function CrPuContent() {
           >
           {!successful && (
             <div>
+              <div className="form-group">
+                <label htmlFor="title">Title</label>
+                <Input
+                  type="text"
+                  className="form-control"
+                  id="title"
+                  value={title}
+                  onChange={e => setTitle(e.target.value)}
+                  validations={[required]}
+                />
+              </div>
+
               <div className="form-group">
                 <label htmlFor="description">Description</label>
                 <Input
@@ -102,28 +120,14 @@ function CrPuContent() {
                 />
               </div>
 
-              <div className="group-input-radio">
-                <span className="form-input-radio">
+              <div className="form-group">
                   <input 
-                    type="radio"
-                    name="sate"
-                    value={0}
-                    onClick={e => setStateContent(e.target.value)}
-                    defaultChecked
-                    id="public"
+                    type="checkbox"
+                    checked={stateContent}
+                    onChange={() => setStateContent(!stateContent)}
+                    id="status"
                   />
-                  <label htmlFor="public" className="radio">&ensp;Public</label>
-                </span>
-                <span className="form-input-radio">
-                  <input 
-                    type="radio"
-                    name="sate"
-                    value={1}
-                    onClick={e => setStateContent(e.target.value)}
-                    id="private"
-                  />
-                  <label htmlFor="private" className="radio">&ensp;Private</label>
-                </span>
+                  <label htmlFor="status">&ensp;Public</label>
               </div>
 
               <div className="form-group">
@@ -159,4 +163,4 @@ function CrPuContent() {
   )
 }
 
-export default CrPuContent
+export default CreateContent
