@@ -9,9 +9,11 @@ import { required } from "../common/validation"
 
 
 function EditContent() {
+  const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [linkImage, setLinkImage] = useState('')
   const [linkVideo, setLinkVideo] = useState('')
+  const [stateContent, setStateContent] = useState(false)
   const [successful, setSuccessful] = useState(false)
   const [message, setMessage] = useState('')
 
@@ -29,7 +31,13 @@ function EditContent() {
 
     form.validateAll()
     if (checkBtn.context._errors.length === 0) {
-      axios.put(http + `crud/update/${id}`, { description, linkImage, linkVideo }, { headers: authHeader() })
+      axios.put(http + `crud/update/${id}`, { 
+        title,
+        description, 
+        linkImage, 
+        linkVideo, 
+        stateContent 
+      }, { headers: authHeader() })
       .then(
         res => {
           setMessage(res.data.message)
@@ -65,6 +73,18 @@ function EditContent() {
           {!successful && (
             <div>
               <div className="form-group">
+                <label htmlFor="title">Title</label>
+                <Input
+                  type="text"
+                  className="form-control"
+                  id="title"
+                  value={title}
+                  onChange={e => setTitle(e.target.value)}
+                  validations={[required]}
+                />
+              </div>
+
+              <div className="form-group">
                 <label htmlFor="description">Description</label>
                 <Input
                   type="text"
@@ -98,6 +118,16 @@ function EditContent() {
                   onChange={e => setLinkVideo(e.target.value)}
                   validations={[required]}
                 />
+              </div>
+
+              <div className="form-group">
+                  <input 
+                    type="checkbox"
+                    checked={stateContent}
+                    onChange={() => setStateContent(!stateContent)}
+                    id="status"
+                  />
+                  <label htmlFor="status">&ensp;Public</label>
               </div>
 
               <div className="form-group">

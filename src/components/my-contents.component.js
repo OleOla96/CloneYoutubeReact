@@ -50,8 +50,10 @@ function MyContents () {
         <thead>
           <tr>
             <th scope="col">Id</th>
+            <th scope="col">Title</th>
             <th scope="col">Description</th>
-            <th scope="col">link Image</th>
+            <th scope="col">Link Image</th>
+            <th scope="col">Link Video</th>
             <th scope="col">Create Time</th>
             <th scope="col" colSpan="2">Update Time</th>
           </tr>
@@ -59,9 +61,11 @@ function MyContents () {
         <tbody>
             {content.map(data => (
             <tr key={data.id}>
-              <td className="">{data.id}</td>
+              <td>{data.id}</td>
+              <td>{data.title}</td>
               <td>{data.description}</td>
               <td>{data.linkImage}</td>
+              <td>{data.linkVideo}</td>
               <td>{data.createdAt}</td>
               <td>{data.updatedAt}</td>
               <td>
