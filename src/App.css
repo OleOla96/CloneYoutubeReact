@@ -45,7 +45,6 @@
 
 label {
   display: inline;
-  margin-top: 10px;
 }
 
 .card-container.card-validate {
@@ -104,4 +103,48 @@ label {
 
 .content-center {
   align-self: center;
+}
+
+.navbar-layout {
+  justify-content: space-between;
+}
+
+.group-search {
+  justify-content: center;
+  flex: 1;
+}
+
+.size {
+  font-size: 1rem;
+}
+
+.group-search .search {
+  max-width: 420px;
+  padding: 0 32px 0 8px;
+  border: 1px #ccc solid;
+  outline: none;
+  border-radius: 40px;
+  flex: 1;
+  line-height: 36px;
+}
+
+.layout-icon-search {
+  position: relative;
+  right: 28px;
+  top: 8px;
+}
+
+.dropdown-left {
+  position: relative;
+}
+
+.show-dropdown-left {
+  top: 100%;
+  right: 8px;
+  left: auto;
+}
+
+.style-sign-up {
+  font-size: 20px;
+  font-weight: 400;
 }

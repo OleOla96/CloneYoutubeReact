@@ -88,7 +88,7 @@ function CreateContent() {
                 <Input
                   type="text"
                   className="form-control"
-                  name="description"
+                  id="description"
                   value={description}
                   onChange={e => setDescription(e.target.value)}
                   validations={[required]}
@@ -100,7 +100,7 @@ function CreateContent() {
                 <Input
                   type="text"
                   className="form-control"
-                  name="linkImage"
+                  id="linkImage"
                   value={linkImage}
                   onChange={e => setLinkImage(e.target.value)}
                   validations={[required]}
@@ -112,7 +112,6 @@ function CreateContent() {
                 <Input
                   type="text"
                   className="form-control"
-                  name="linkVideo"
                   id="linkVideo"
                   value={linkVideo}
                   onChange={e => setLinkVideo(e.target.value)}
@@ -123,9 +122,9 @@ function CreateContent() {
               <div className="form-group">
                   <input 
                     type="checkbox"
+                    id="status"
                     checked={stateContent}
                     onChange={() => setStateContent(!stateContent)}
-                    id="status"
                   />
                   <label htmlFor="status">&ensp;Public</label>
               </div>
