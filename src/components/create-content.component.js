@@ -12,8 +12,8 @@ function CreateContent() {
   const [description, setDescription] = useState('')
   const [linkImage, setLinkImage] = useState('')
   const [linkVideo, setLinkVideo] = useState('')
-  const [successful, setSuccessful] = useState(false)
   const [stateContent, setStateContent] = useState(false)
+  const [successful, setSuccessful] = useState(false)
   const [message, setMessage] = useState('')
 
   let checkBtn

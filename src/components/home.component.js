@@ -5,28 +5,26 @@ import { http } from "../common/http"
 
 
 function Home() {
-  const [publicContent, setPublicContent] = useState([])
+  const [content, setContent] = useState([])
 
   useEffect(
     () => {
       axios.get(http + 'showall').then(res => {
-        setPublicContent(res.data.data)
+        setContent(res.data.data)
       })
     }, [])
 
-  console.log(publicContent)
-
   return (
     <div className="container mt-3">
-      {publicContent ? (
+      {content ? (
       <div className="row">
-        {publicContent.map(data => (
+        {content.map(data => (
           <div className="col-sm-6 col-lg-4" key={data.id}>
             <div className="card mt-4">
               <Link to={`learn/${data.id}`}>
                 <img className="card-img-top"
                   src={`https://i.ytimg.com/vi/${data.linkImage}/maxresdefault.jpg`}
-                  alt={data.description}
+                  alt={data.title}
                 />
               </Link>
               <div className="card-body">

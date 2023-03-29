@@ -39,7 +39,7 @@ function Layout1() {
   
   return (
     <div>
-      <nav className="navbar sticky-top navbar-expand navbar-dark bg-dark">
+      <nav className="navbar sticky-top navbar-expand navbar-light bg-light">
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
             <Link to={"/"} className="nav-link" onClick={handleClickHome}>
