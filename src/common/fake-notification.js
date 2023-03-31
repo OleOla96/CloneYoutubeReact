@@ -2,7 +2,7 @@ export default function CRnotification() {
     setInterval(() => {
         window.dispatchEvent(
             new CustomEvent('fakeNotification', {
-                detail: 'Content of fakeNotification '
+                detail: 'Notification'
             })
         )
         

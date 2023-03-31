@@ -11,6 +11,7 @@ function MyContents () {
   const [message, setMessage] = useState('')
   const [successful, setSuccessful] = useState(false)
   const [state, setState] = useState(false)
+  const [confirmDelete, setConfirmDelete] = useState(false)
   
   useEffect(() => {
     const userId = JSON.parse(localStorage.getItem('user')).id
@@ -20,11 +21,11 @@ function MyContents () {
   }, [state])
 
   const handleDelete = (id) => {
-    const text = "Press a button!\nEither OK or Cancel."
-    window.confirm(text)
-    if (window.confirm(text) === true) {
+    setConfirmDelete(true)
+
+    if (confirmDelete) {
       axios.delete(http + `crud/delete/${id}`, {headers: authHeader()})
-      .then( res => {
+      .then(res => {
         setState(!setState)
         setMessage(res.data.message)
         setSuccessful(true)
@@ -45,6 +46,29 @@ function MyContents () {
 
   return (
     <div className="container mt-4">
+      {confirmDelete && (
+        <div className="backgroud-message">
+          <div className="confirm-delete">
+            <div className="title-confirm">You definitely want to delete?</div>
+            <div className="confirm-yesNo"> 
+              <button className="fa fa-check btn-icon state-yes">&nbsp; Yes</button>
+              <button className="fa fa-close btn-icon">&nbsp; No</button>
+            </div>
+          </div>
+          {message && (
+          <div
+            className={
+              successful
+                ? "alert alert-success message"
+                : "alert alert-danger message"
+            }
+            role="alert"
+          >
+            {message}
+          </div>
+          )}
+        </div>
+      )}
       <h1>My Contents</h1>
       <table className="table mt-4">
         <thead>
@@ -52,10 +76,10 @@ function MyContents () {
             <th scope="col">Id</th>
             <th scope="col">Title</th>
             <th scope="col">Description</th>
-            <th scope="col">Link Image</th>
+            {/* <th scope="col">Link Image</th> */}
             <th scope="col">Link Video</th>
-            <th scope="col">Create Time</th>
-            <th scope="col" colSpan="2">Update Time</th>
+            {/* <th scope="col">Create Time</th> */}
+            <th scope="col" colSpan="2"></th>
           </tr>
         </thead>
         <tbody>
@@ -64,10 +88,10 @@ function MyContents () {
               <td>{data.id}</td>
               <td>{data.title}</td>
               <td>{data.description}</td>
-              <td>{data.linkImage}</td>
+              {/* <td>{data.linkImage}</td> */}
               <td>{data.linkVideo}</td>
-              <td>{data.createdAt}</td>
-              <td>{data.updatedAt}</td>
+              {/* <td>{data.createdAt}</td>
+              <td>{data.updatedAt}</td> */}
               <td>
                 <Link to={`editcontent/${data.id}`} className="btn btn-link size-icon">
                   <i className="fa fa-edit"></i>
@@ -80,20 +104,6 @@ function MyContents () {
               </td>
             </tr>
             ))}
-             {message && (
-            <div className="">
-              <div
-                className={
-                  successful
-                    ? "alert alert-success"
-                    : "alert alert-danger"
-                }
-                role="alert"
-              >
-                {message}
-              </div>
-            </div>
-          )}
         </tbody>
       </table>
     </div>

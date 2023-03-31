@@ -27,7 +27,7 @@ function BoardUser() {
 
   return (
     <div className="container mt-3">
-      {content ? (
+      {content.length ? (
       <div className="row">
         {content.map(data => (
           <div className="col-sm-6 col-lg-4" key={data.id}>

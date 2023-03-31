@@ -14,9 +14,8 @@ import BoardAdmin from "./components/board-admin.component"
 import CreateContent from "./components/create-content.component"
 import MyContents from "./components/my-contents.component"
 import EditContent from "./components/edit-content.component"
-import CRnotification from './common/fake-notification'
 
-CRnotification()
+
 function App() {
   return (
     <BrowserRouter>

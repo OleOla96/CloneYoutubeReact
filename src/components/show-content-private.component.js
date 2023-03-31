@@ -26,10 +26,11 @@ function ContentPrivate() {
         <div className="col-lg-9">
           <iframe width="640" height="360" 
           src={`https://www.youtube.com/embed/${showVideo.linkVideo}`} 
-          title={showVideo.description} frameBorder="0" 
+          title={showVideo.title} frameBorder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
           allowFullScreen></iframe>
-          <h5>{showVideo.description}</h5>
+          <h5>{showVideo.title}</h5>
+          <p>{showVideo.description}</p>
         </div>
       </div>
     </div>
