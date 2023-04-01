@@ -25,7 +25,7 @@ function Home() {
             <div className="card mt-4">
               <Link to={`learn/${data.id}`}>
                 <img className="card-img-top"
-                  src={`https://i.ytimg.com/vi/${data.linkImage}/maxresdefault.jpg`}
+                  src={`https://i.ytimg.com/vi/${data.linkVideo}/maxresdefault.jpg`}
                   alt={data.title}
                 />
               </Link>

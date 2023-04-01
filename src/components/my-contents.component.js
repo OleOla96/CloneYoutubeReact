@@ -11,7 +11,6 @@ function MyContents () {
   const [message, setMessage] = useState('')
   const [successful, setSuccessful] = useState(false)
   const [state, setState] = useState(false)
-  const [confirmDelete, setConfirmDelete] = useState(false)
   
   useEffect(() => {
     const userId = JSON.parse(localStorage.getItem('user')).id
@@ -21,12 +20,10 @@ function MyContents () {
   }, [state])
 
   const handleDelete = (id) => {
-    setConfirmDelete(true)
-
-    if (confirmDelete) {
+    if (window.confirm('You definitely want to delete?')) {
       axios.delete(http + `crud/delete/${id}`, {headers: authHeader()})
       .then(res => {
-        setState(!setState)
+        setState(!state)
         setMessage(res.data.message)
         setSuccessful(true)
       },
@@ -46,28 +43,20 @@ function MyContents () {
 
   return (
     <div className="container mt-4">
-      {confirmDelete && (
-        <div className="backgroud-message">
-          <div className="confirm-delete">
-            <div className="title-confirm">You definitely want to delete?</div>
-            <div className="confirm-yesNo"> 
-              <button className="fa fa-check btn-icon state-yes">&nbsp; Yes</button>
-              <button className="fa fa-close btn-icon">&nbsp; No</button>
-            </div>
-          </div>
-          {message && (
-          <div
-            className={
+      {message && (
+        <>
+          <input type="checkbox" hidden id="check" className="check-overlay"/>
+          <label for='check' className={
               successful
-                ? "alert alert-success message"
-                : "alert alert-danger message"
+                ? "alert alert-success message text-center"
+                : "alert alert-danger message text-center"
             }
-            role="alert"
-          >
-            {message}
-          </div>
-          )}
-        </div>
+            role="alert">
+            <h5>{message}</h5>
+            <span style={{color: 'black'}}>Press any key.</span>
+          </label>
+          <label className="backgroud-overlay" for='check'></label>
+        </>
       )}
       <h1>My Contents</h1>
       <table className="table mt-4">
@@ -76,7 +65,6 @@ function MyContents () {
             <th scope="col">Id</th>
             <th scope="col">Title</th>
             <th scope="col">Description</th>
-            {/* <th scope="col">Link Image</th> */}
             <th scope="col">Link Video</th>
             {/* <th scope="col">Create Time</th> */}
             <th scope="col" colSpan="2"></th>
@@ -88,7 +76,6 @@ function MyContents () {
               <td>{data.id}</td>
               <td>{data.title}</td>
               <td>{data.description}</td>
-              {/* <td>{data.linkImage}</td> */}
               <td>{data.linkVideo}</td>
               {/* <td>{data.createdAt}</td>
               <td>{data.updatedAt}</td> */}
@@ -98,8 +85,10 @@ function MyContents () {
                 </Link>
               </td>
               <td>
-                <span className="btn btn-link button-delete size-icon" onClick={() => handleDelete(data.id)}>
-                  <i className="fa fa-trash-o"></i>
+                <span 
+                className="btn btn-link button-delete size-icon" 
+                onClick={() => handleDelete(data.id)}>
+                  <label for='check' className="fa fa-trash-o"></label>
                 </span>
               </td>
             </tr>

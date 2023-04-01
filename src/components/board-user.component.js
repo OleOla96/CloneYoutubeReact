@@ -34,13 +34,13 @@ function BoardUser() {
             <div className="card mt-4">
               <Link to={`${data.id}`}>
                 <img className="card-img-top"
-                  src={`https://i.ytimg.com/vi/${data.linkImage}/maxresdefault.jpg`}
-                  alt={data.description}
+                  src={`https://i.ytimg.com/vi/${data.linkVideo}/maxresdefault.jpg`}
+                  alt={data.title}
                 />
               </Link>
               <div className="card-body">
                 <Link to={`${data.id}`} className="card-text">
-                  {data.description}
+                  {data.title}
                 </Link>
               </div>
             </div>

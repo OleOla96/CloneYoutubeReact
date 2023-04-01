@@ -10,7 +10,6 @@ import { required } from "../common/validation"
 function CreateContent() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [linkImage, setLinkImage] = useState('')
   const [linkVideo, setLinkVideo] = useState('')
   const [stateContent, setStateContent] = useState(false)
 
@@ -28,7 +27,6 @@ function CreateContent() {
         userId, 
         title, 
         description, 
-        linkImage, 
         linkVideo, 
         stateContent 
       }, 
@@ -37,7 +35,6 @@ function CreateContent() {
         window.alert(res.data.message)
         setTitle('')
         setDescription('')
-        setLinkImage('')
         setLinkVideo('')
         setStateContent(false)
       })
@@ -78,18 +75,6 @@ function CreateContent() {
                   id="description"
                   value={description}
                   onChange={e => setDescription(e.target.value)}
-                  validations={[required]}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="linkImage">Link Image</label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  id="linkImage"
-                  value={linkImage}
-                  onChange={e => setLinkImage(e.target.value)}
                   validations={[required]}
                 />
               </div>
