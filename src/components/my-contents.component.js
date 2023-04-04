@@ -77,8 +77,6 @@ function MyContents () {
               <td>{data.title}</td>
               <td>{data.description}</td>
               <td>{data.linkVideo}</td>
-              {/* <td>{data.createdAt}</td>
-              <td>{data.updatedAt}</td> */}
               <td>
                 <Link to={`editcontent/${data.id}`} className="btn btn-link size-icon">
                   <i className="fa fa-edit"></i>
@@ -88,7 +86,7 @@ function MyContents () {
                 <span 
                 className="btn btn-link button-delete size-icon" 
                 onClick={() => handleDelete(data.id)}>
-                  <label for='check' className="fa fa-trash-o"></label>
+                  <label htmlFor='check' className="fa fa-trash-o"></label>
                 </span>
               </td>
             </tr>

@@ -45,7 +45,7 @@ export default class Profile extends Component {
           <strong>Authorities:</strong>
           <ul>
             {currentUser.roles &&
-              currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
+              currentUser.roles.map((role, index) => <li className="navbar-nav" key={index}>{role}</li>)}
           </ul>
           <button type="button" className="btn btn-primary">Add personal information</button>
         </div>: null}

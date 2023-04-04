@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import Form from "react-validation/build/form"
 import Input from "react-validation/build/input"
 import CheckButton from "react-validation/build/button"
@@ -14,18 +14,17 @@ function Register() {
   const [successful, setSuccessful] = useState(false)
   const [message, setMessage] = useState('')
 
-  let checkBtn
-  let form
+  const checkBtn = useRef()
+  const form = useRef()
 
   const handleRegister = (e) => {
     e.preventDefault()
-
     setEmail('')
     setSuccessful(false)
 
-    form.validateAll()
+    form.current.validateAll()
 
-    if (checkBtn.context._errors.length === 0) {
+    if (checkBtn.current.context._errors.length === 0) {
       axios.post(http + 'auth/signup', {username, email, password}).then(
         res => {
           setEmail(res.data.message)
@@ -46,7 +45,7 @@ function Register() {
 
   return (
     <div className="col-md-12">
-      <div className="card card-container">
+      <div className="card-validate card-container">
         <img
           src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
           alt="profile-img"
@@ -56,17 +55,17 @@ function Register() {
         <Form
           onSubmit={handleRegister}
           ref={c => {
-            form = c
+            form.current = c
           }}
         >
         {!successful && (
-          <div>
+          <>
             <div className="form-group">
               <label htmlFor="username">Username</label>
               <Input
                 type="text"
                 className="form-control"
-                name="username"
+                placeholder="e.g. tchalla123"
                 value={username}
                 onChange={e => setUsername(e.target.value)}
                 validations={[required, vusername]}
@@ -78,7 +77,7 @@ function Register() {
               <Input
                 type="text"
                 className="form-control"
-                name="email"
+                placeholder="e.g. tchalla123@wakanda.gov"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 validations={[required, vemail]}
@@ -112,7 +111,7 @@ function Register() {
             <div className="form-group">
               <button className="btn btn-primary btn-block">Sign Up</button>
             </div>
-          </div>
+          </>
         )}
 
         {message && (
@@ -130,7 +129,7 @@ function Register() {
         <CheckButton
           style={{ display: "none" }}
           ref={c => {
-            checkBtn = c
+            checkBtn.current = c
           }}
         />
         </Form>

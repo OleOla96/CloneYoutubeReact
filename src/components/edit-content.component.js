@@ -11,7 +11,6 @@ import { required } from "../common/validation"
 function EditContent() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [linkImage, setLinkImage] = useState('')
   const [linkVideo, setLinkVideo] = useState('')
   const [stateContent, setStateContent] = useState(false)
   const [successful, setSuccessful] = useState(false)
@@ -34,7 +33,6 @@ function EditContent() {
       axios.put(http + `crud/update/${id}`, { 
         title,
         description, 
-        linkImage, 
         linkVideo, 
         stateContent 
       }, { headers: authHeader() })
@@ -92,18 +90,6 @@ function EditContent() {
                   id="description"
                   value={description}
                   onChange={e => setDescription(e.target.value)}
-                  validations={[required]}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="linkImage">Link Image</label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  id="linkImage"
-                  value={linkImage}
-                  onChange={e => setLinkImage(e.target.value)}
                   validations={[required]}
                 />
               </div>
