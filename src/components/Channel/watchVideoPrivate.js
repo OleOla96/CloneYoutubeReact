@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import authHeader from '../services/auth-header'
-import { http } from '../common/http'
+import authHeader from '../../services/auth-header'
+import { http } from '../../common/http'
 
-function ContentPrivate() {
+function VideoPrivate() {
   const [showVideo, setShowVideo] = useState([])
 
   useEffect(() => {
@@ -11,7 +11,6 @@ function ContentPrivate() {
     const getPathname = window.location.pathname
     const getId = getPathname.split('/')
     const id = getId.slice(-1)
-    console.log(id)
     axios
       .get(http + `roles/${userId}/${id}`, { headers: authHeader() })
       .then((res) => {
@@ -40,4 +39,4 @@ function ContentPrivate() {
   )
 }
 
-export default ContentPrivate
+export default VideoPrivate

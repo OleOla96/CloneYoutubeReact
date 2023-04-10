@@ -1,22 +1,19 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { http } from '../common/http'
+import { http } from '../../common/http'
 
 function Home() {
   const [content, setContent] = useState([])
 
   useEffect(() => {
-    console.log('in')
     axios.get(http + 'showall').then((res) => {
       if (res.data.data.length) setContent(res.data.data)
     })
   }, [])
 
-  console.log('out')
-
   return (
-    <div className='container mt-3'>
+    <>
       {content.length ? (
         <div className='row'>
           {content.map((data) => (
@@ -41,7 +38,7 @@ function Home() {
       ) : (
         <h2 style={{ textAlign: 'center' }}>Sorry, no content yet!</h2>
       )}
-    </div>
+    </>
   )
 }
 

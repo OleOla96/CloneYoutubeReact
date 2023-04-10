@@ -4,7 +4,7 @@ import Form from 'react-validation/build/form'
 import Input from 'react-validation/build/input'
 import CheckButton from 'react-validation/build/button'
 import axios from 'axios'
-import { http } from '../common/http'
+import { http } from '../../common/http'
 
 function Login() {
   const [username, setUsername] = useState('')
@@ -32,7 +32,7 @@ function Login() {
         })
         .then(
           () => {
-            navigate('/myprofile')
+            navigate('/mychannel')
             window.location.reload()
           },
           (error) => {
@@ -49,7 +49,7 @@ function Login() {
   }
 
   return (
-    <>
+    <div className='container mgTop'>
       <div className='card-validate card-container'>
         <img
           src='//ssl.gstatic.com/accounts/ui/avatar_2x.png'
@@ -113,7 +113,7 @@ function Login() {
           </Link>
         </Form>
       </div>
-    </>
+    </div>
   )
 }
 

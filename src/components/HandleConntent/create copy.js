@@ -1,28 +1,26 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Form from 'react-validation/build/form'
 import Input from 'react-validation/build/input'
 import CheckButton from 'react-validation/build/button'
 import axios from 'axios'
-import authHeader from '../services/auth-header'
-import { http } from '../common/http'
-import { required } from '../common/validation'
+import authHeader from '../../services/auth-header'
+import { http } from '../../common/http'
+import { required } from '../../common/validation'
 
 function CreateContent() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [linkVideo, setLinkVideo] = useState('')
   const [stateContent, setStateContent] = useState(false)
+  const [response, setResponse] = useState(false)
 
   const checkBtn = useRef()
   const form = useRef()
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    form.current.validateAll()
-
+  useEffect(() => {
     const userId = JSON.parse(localStorage.getItem('user')).id
 
-    if (checkBtn.current.context._errors.length === 0) {
+    if (response) {
       axios
         .post(
           http + 'crud/create',
@@ -41,7 +39,17 @@ function CreateContent() {
           setDescription('')
           setLinkVideo('')
           setStateContent(false)
+          setResponse(false)
         })
+    }
+  }, [response])
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    form.current.validateAll()
+
+    if (checkBtn.current.context._errors.length === 0) {
+      setResponse(true)
     }
   }
 

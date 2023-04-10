@@ -1,13 +1,13 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
-import authHeader from '../services/auth-header'
-import { http } from "../common/http"
+import authHeader from '../../services/auth-header'
+import { http } from "../../common/http"
 
-function BoardAdmin() {
+function BoardModerator() {
   const [content, setContent] = useState('')
 
   useEffect(() => {
-    axios.get(http + 'roles/admin', {headers: authHeader()})
+    axios.get(http + 'roles/mod', {headers: authHeader()})
     .then(res => {
       setContent(res.data)
     },error => {
@@ -30,4 +30,4 @@ function BoardAdmin() {
   )
 }
 
-export default BoardAdmin
+export default BoardModerator

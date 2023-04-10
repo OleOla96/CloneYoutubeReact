@@ -1,9 +1,8 @@
-
 import { useState, useEffect } from "react"
-import authHeader from '../services/auth-header'
+import authHeader from '../../services/auth-header'
 import { Link } from "react-router-dom"
 import axios from "axios"
-import { http } from "../common/http"
+import { http } from "../../common/http"
 
 
 function MyContents () {
@@ -42,7 +41,7 @@ function MyContents () {
   }
 
   return (
-    <div className="container mt-4">
+    <div className="container mgTop">
       {message && (
         <>
           <input type="checkbox" hidden id="check" className="check-overlay"/>
@@ -66,13 +65,12 @@ function MyContents () {
             <th scope="col">Title</th>
             <th scope="col">Description</th>
             <th scope="col">Link Video</th>
-            {/* <th scope="col">Create Time</th> */}
             <th scope="col" colSpan="2"></th>
           </tr>
         </thead>
         <tbody>
             {content.map(data => (
-            <tr key={data.id}>
+            <tr key={data.id} className="rowContent-center">
               <td>{data.id}</td>
               <td>{data.title}</td>
               <td>{data.description}</td>

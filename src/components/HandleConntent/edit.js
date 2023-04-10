@@ -3,9 +3,9 @@ import Form from "react-validation/build/form"
 import Input from "react-validation/build/input"
 import CheckButton from "react-validation/build/button"
 import axios from "axios"
-import authHeader from "../services/auth-header"
-import { http } from "../common/http"
-import { required } from "../common/validation"
+import authHeader from "../../services/auth-header"
+import { http } from "../../common/http"
+import { required } from "../../common/validation"
 
 
 function EditContent() {

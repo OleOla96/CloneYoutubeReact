@@ -1,0 +1,188 @@
+@import 'normalize.css';
+// @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+:root {
+  --primary: #fe2c55;
+  --black: #000;
+  --white: #fff;
+  --text-color: #161823;
+  --heightHeader: 56px;
+  --heightHeader-item: 40px;
+  --heightSidebar-item: 24px;
+  --heightHeader-text: 34px;
+  --heightContent-table: 36px;
+  --size-icon-dropdown: 24px;
+  --color-icon: #030303;
+  --color-avatar: #7a1fa2;
+  --color-brandIcon-sup: #606060;
+  --font-family: 'ProximaNova', sans-serif;
+
+  // Default layout
+  --default-layout-header-height: 60px;
+  --default-layout-width: 1150px;
+  --default-layout-horizontal-spacer: 24px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 1rem;
+  text-rendering: optimizespeed;
+  color: var(--text-color);
+  overflow-y: scroll;
+}
+
+// Scrollbar CSS
+html *::-webkit-scrollbar {
+  border-radius: 0;
+  width: 8px;
+}
+
+html *::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+html *::-webkit-scrollbar-track {
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+button,
+input,
+[tabindex] {
+  outline: none;
+  border: none;
+}
+
+a,
+a:hover {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.card-validate {
+  max-width: 350px;
+  margin-top: var(--heightHeader);
+  flex-basis: 350px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 2px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+  .card-title {
+    padding-bottom: 1rem;
+  }
+}
+
+.form-group {
+  .btn {
+    width: 100%;
+  }
+}
+
+.backgroud-overlay {
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.05);
+  animation: bgm-show linear 0.5s;
+}
+
+@keyframes bgm-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.check-overlay:checked ~ .alert,
+.check-overlay:checked ~ .backgroud-overlay {
+  display: none;
+}
+
+.alert.alert-success.message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-bottom: 0;
+  transform: translate(-50%, -100%);
+  z-index: 4;
+}
+
+.mgr {
+    margin-right: 8px;
+}
+
+.mgr2 {
+    margin-right: 16px;
+}
+
+.mgr3 {
+    margin-right: 24px;
+}
+
+// Fonts emmbeded
+// @font-face {
+//     font-family: ProximaNova;
+//     src: url('/assets/fonts/Proxima-Nova-Regular.woff2');
+//     font-weight: 400;
+// }
+
+// @font-face {
+//     font-family: ProximaNova;
+//     src: url('/assets/fonts/ProximaNova-Semibold.woff2');
+//     font-weight: 600;
+// }
+
+// @font-face {
+//     font-family: ProximaNova;
+//     src: url('/assets/fonts/Proxima-Nova-Bold.woff');
+//     font-weight: 700;
+// }
+
+// @font-face {
+//     font-family: SofiaPro;
+//     src: url('/assets/fonts/sofiapro-bold.woff');
+//     font-weight: 700;
+// }
+
+// Custom tippy tooltip
+body {
+  .tippy-box {
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    background-color: rgba(84, 84, 84, 0.92);
+  }
+
+  .tippy-arrow {
+    color: rgba(84, 84, 84, 0.92);
+  }
+
+  .tippy-content {
+    padding: 8px 9px;
+  }
+
+  .tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
+    top: -8px;
+  }
+}

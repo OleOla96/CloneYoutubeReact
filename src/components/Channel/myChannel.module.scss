@@ -1,0 +1,56 @@
+.channelContainer {
+  display: block;
+  padding: 0 16px;
+  width: 100%;
+  margin-top: var(--heightHeader);
+
+  --avatar: 128px;
+}
+
+.channelHeader {
+  display: flex;
+  height: 158px;
+  width: inherit;
+  padding: 16px;
+  background-color: transparent;
+}
+
+.avatarEditor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4.5rem;
+  color: var(--white);
+  width: var(--avatar);
+  height: var(--avatar);
+  background-color: var(--color-avatar);
+  border-radius: 50%;
+}
+
+.innerHeader {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.innerHeader-meta {
+  min-width: 150px;
+  flex: 1;
+}
+
+.innerHeader-btn {
+  display: inline-block;
+
+  .show-bg-icon {
+    width: fit-content;
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 18px;
+    border: none;
+    background-color: #f2f2f2;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+}
