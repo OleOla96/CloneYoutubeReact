@@ -10,7 +10,7 @@
 
 .btnSidebar {
   display: flex;
-  width: calc(100% - 12px);
+  width: fit-content;
   height: var(--heightHeader-item);
   justify-content: flex-start;
   align-items: center;
@@ -32,10 +32,18 @@
   }
 }
 
+.content-inline +.content-inline {
+  width: 132px;
+  height: 20px;
+  margin-left: 24px;
+  line-height: 20px;
+  text-align: left;
+}
+
 .bg-icon {
   display: inline-block;
-  height: var(--heightSidebar-item);
-  width: var(--heightSidebar-item);
+  height: var(--size-item-default);
+  width: var(--size-item-default);
   pointer-events: none;
   color: var(--color-icon);
 }

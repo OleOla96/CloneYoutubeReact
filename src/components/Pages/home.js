@@ -18,19 +18,19 @@ function Home() {
         <div className='row'>
           {content.map((data) => (
             <div className='col-sm-6 col-lg-4' key={data.id}>
-              <div className='card mt-4'>
-                <Link to={`learn/${data.id}`}>
+              <div className='card cardYoutube mt-4'>
+                <Link to={`watch/${data.id}`}>
                   <img
-                    className='card-img-top'
+                    className='card-img-top '
                     src={`https://i.ytimg.com/vi/${data.linkVideo}/maxresdefault.jpg`}
                     alt={data.title}
                   />
                 </Link>
-                <div className='card-body'>
-                  <Link to={`learn/${data.id}`} className='card-text'>
+                <h4>
+                  <Link to={`watch/${data.id}`} className='card-text style-title mt-2'>
                     {data.title}
                   </Link>
-                </div>
+                </h4>
               </div>
             </div>
           ))}

@@ -1,8 +1,10 @@
 .channelContainer {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding: 0 16px;
-  width: 100%;
   margin-top: var(--heightHeader);
+  margin-bottom: 32px;
 
   --avatar: 128px;
 }
@@ -10,7 +12,7 @@
 .channelHeader {
   display: flex;
   height: 158px;
-  width: inherit;
+  flex: 1;
   padding: 16px;
   background-color: transparent;
 }
@@ -19,7 +21,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4.5rem;
+  font-size: 5.6rem;
   color: var(--white);
   width: var(--avatar);
   height: var(--avatar);
@@ -30,13 +32,18 @@
 .innerHeader {
   display: flex;
   flex: 1;
+  align-items: flex-start;
+  justify-content: space-between;
   flex-wrap: wrap;
   margin-top: 16px;
 }
 
 .innerHeader-meta {
-  min-width: 150px;
+  display: flex;
   flex: 1;
+  flex-direction: column;
+  min-width: 150px;
+
 }
 
 .innerHeader-btn {
@@ -51,6 +58,24 @@
     background-color: #f2f2f2;
     &:hover {
       background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+@media only screen and (max-width: 35.3125em) {
+  .innerHeader-btn {
+    display: flex;
+    flex-direction: column;
+
+    .show-bg-icon:first-child {
+      margin-bottom: 8px;
+    }
+  }
+
+  .innerHeader {
+
+    .show-bg-icon:first-child {
+      height: fit-content;
     }
   }
 }

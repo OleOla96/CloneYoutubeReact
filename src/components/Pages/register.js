@@ -11,6 +11,10 @@ import {
   vusername,
   cpassword,
 } from '../../common/validation'
+import classname from 'classnames/bind'
+import style from './login-register.scss'
+
+const cb = classname.bind(style)
 
 function Register() {
   const [username, setUsername] = useState('')
@@ -51,12 +55,12 @@ function Register() {
   }
 
   return (
-    <div className='container mgTop'>
+    <div className={cb('login-register')}>
       {message && (
         <>
           <input type='checkbox' hidden id='check' className='check-overlay' />
           <label
-            for='check'
+            htmlFor='check'
             className={
               successful
                 ? 'alert alert-success message text-center'

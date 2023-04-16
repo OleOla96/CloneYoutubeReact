@@ -1,5 +1,5 @@
 @import 'normalize.css';
-// @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 :root {
   --primary: #fe2c55;
   --black: #000;
@@ -7,11 +7,12 @@
   --text-color: #161823;
   --heightHeader: 56px;
   --heightHeader-item: 40px;
-  --heightSidebar-item: 24px;
+  --size-item-default: 24px;
   --heightHeader-text: 34px;
   --heightContent-table: 36px;
   --size-icon-dropdown: 24px;
   --color-icon: #030303;
+  --color-signin: #065fd4;
   --color-avatar: #7a1fa2;
   --color-brandIcon-sup: #606060;
   --font-family: 'ProximaNova', sans-serif;
@@ -29,12 +30,12 @@
 }
 
 html {
-  font-size: 100%;
+  font-size: 62.5%;
 }
 
 body {
-  font-family: 'Roboto', Arial, sans-serif;
-  font-size: 1rem;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  font-size: 1.6rem;
   text-rendering: optimizespeed;
   color: var(--text-color);
   overflow-y: scroll;
@@ -69,6 +70,20 @@ a:hover {
   text-decoration: none;
 }
 
+.content {
+  display: flex;
+  flex: 1;
+  margin: 0 16px;
+}
+
+.logo-login {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
+  padding: 16px;
+}
+
 .card-validate {
   max-width: 350px;
   margin-top: var(--heightHeader);
@@ -84,6 +99,20 @@ a:hover {
 
   .card-title {
     padding-bottom: 1rem;
+  }
+}
+
+.cardYoutube {
+  border: none;
+  overflow: hidden;
+  border-radius: 0;
+
+  .card-img-top {
+    border-radius: 12px;
+  }
+
+  .card-img-top:hover {
+    border-radius: 0;
   }
 }
 
@@ -127,50 +156,29 @@ a:hover {
   z-index: 4;
 }
 
-.mgr {
-    margin-right: 8px;
+.mgr5 {
+  margin-right: 24px;
 }
 
-.mgr2 {
-    margin-right: 16px;
+.style-title {
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 2.2rem;
+  max-height: 4.4rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  white-space: normal;
 }
 
-.mgr3 {
-    margin-right: 24px;
-}
-
-// Fonts emmbeded
-// @font-face {
-//     font-family: ProximaNova;
-//     src: url('/assets/fonts/Proxima-Nova-Regular.woff2');
-//     font-weight: 400;
-// }
-
-// @font-face {
-//     font-family: ProximaNova;
-//     src: url('/assets/fonts/ProximaNova-Semibold.woff2');
-//     font-weight: 600;
-// }
-
-// @font-face {
-//     font-family: ProximaNova;
-//     src: url('/assets/fonts/Proxima-Nova-Bold.woff');
-//     font-weight: 700;
-// }
-
-// @font-face {
-//     font-family: SofiaPro;
-//     src: url('/assets/fonts/sofiapro-bold.woff');
-//     font-weight: 700;
-// }
-
-// Custom tippy tooltip
 body {
   .tippy-box {
     border-radius: 8px;
     font-weight: 600;
-    font-size: 1.6rem;
-    line-height: 2.2rem;
+    font-size: 1rem;
+    line-height: 1rem;
     background-color: rgba(84, 84, 84, 0.92);
   }
 

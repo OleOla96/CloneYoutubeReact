@@ -1,12 +1,16 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { http } from '../../common/http'
+import classNames from 'classnames/bind'
 
-function Learn() {
+import style from './watch.module.scss'
+import { http } from '../../../common/http'
+
+const cb = classNames.bind(style)
+
+function Watch() {
   const [showVideo, setShowVideo] = useState([])
 
   useEffect(() => {
-    console.log('in')
     const getPathname = window.location.pathname
     const getId = getPathname.split('/')
     const id = getId.slice(-1)
@@ -15,25 +19,25 @@ function Learn() {
     })
   }, [])
 
-  console.log('out')
-
   return (
-    <div className='container mgTop'>
-      <div className='col-lg-9'>
+    <div className={cb('watch', 'mt-4')}>
+      <div className='col-sm-9'>
         <iframe
-          width='640'
-          height='360'
+          className={cb('screenVideo')}
+          width='854'
+          height='428'
           src={`https://www.youtube.com/embed/${showVideo.linkVideo}`}
           title={showVideo.description}
           frameBorder='0'
           allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
           allowFullScreen
         ></iframe>
-        <h5>{showVideo.title}</h5>
+        <h3>{showVideo.title}</h3>
         <p>{showVideo.description}</p>
       </div>
+      <div className='col-sm-3'>Side Video</div>
     </div>
   )
 }
 
-export default Learn
+export default Watch

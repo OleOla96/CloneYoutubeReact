@@ -2,12 +2,12 @@ import classname from 'classnames/bind'
 import style from './sidebar.module.scss'
 const cls = classname.bind(style)
 
-export default function SideBar() {
+export default function SideBarMini() {
   return (
     <div id={cls('sidebar')}>
       <div className={cls('innerSidebar')}>
         <button className={cls('btnSidebar', 'btnTop')}>
-          <div className={cls('content-inline', 'mgr2')}>
+          <div className={cls('content-inline', 'mr-4')}>
             <svg
               viewBox='0 0 24 24'
               preserveAspectRatio='xMidYMid meet'
@@ -19,12 +19,9 @@ export default function SideBar() {
               </g>
             </svg>
           </div>
-          <div className={cls('content-inline')}>
-            <span className={cls('style-text')}>Home</span>
-          </div>
         </button>
         <button className={cls('btnSidebar')}>
-          <div className={cls('content-inline', 'mgr2')}>
+          <div className={cls('content-inline', 'mr-4')}>
             <svg
               viewBox='0 0 24 24'
               preserveAspectRatio='xMidYMid meet'
@@ -36,12 +33,9 @@ export default function SideBar() {
               </g>
             </svg>
           </div>
-          <div className={cls('content-inline')}>
-            <span className={cls('style-text')}>Shorst</span>
-          </div>
         </button>
         <button className={cls('btnSidebar')}>
-          <div className={cls('content-inline', 'mgr2')}>
+          <div className={cls('content-inline', 'mr-4')}>
             <svg
               viewBox='0 0 24 24'
               preserveAspectRatio='xMidYMid meet'
@@ -55,12 +49,9 @@ export default function SideBar() {
               </g>
             </svg>
           </div>
-          <div className={cls('content-inline')}>
-            <span className={cls('style-text')}>Subscriptions</span>
-          </div>
         </button>
         <button className={cls('btnSidebar')}>
-          <div className={cls('content-inline', 'mgr2')}>
+          <div className={cls('content-inline', 'mr-4')}>
             <svg
               viewBox='0 0 24 24'
               preserveAspectRatio='xMidYMid meet'
@@ -73,9 +64,6 @@ export default function SideBar() {
                 ></path>
               </g>
             </svg>
-          </div>
-          <div className={cls('content-inline')}>
-            <span className={cls('style-text')}>Library</span>
           </div>
         </button>
       </div>
