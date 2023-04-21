@@ -2,16 +2,20 @@ import axios from 'axios'
 import authHeader from './auth-header'
 import { http } from '../common/http'
 
-const getPublicContent = () => {
+const getPublicContents = () => {
   return axios.get(http + 'showall')
 }
 
-const getUserContent = (userId) => {
+const getUserContents = (userId) => {
   return axios.get(http + `roles/${userId}`, { headers: authHeader() })
 }
 
 const createContent = (data) => {
   return axios.post(http + 'crud/create', data, { headers: authHeader() })
+}
+
+const getUpdateContent = (id) => {
+  return axios.get(http + `crud/update/${id}`, { headers: authHeader() })
 }
 
 const updateContent = (id, data) => {
@@ -23,9 +27,10 @@ const deleteContent = (id) => {
 }
 
 const CrudSevice = {
-  getPublicContent,
-  getUserContent,
+  getPublicContents,
+  getUserContents,
   createContent,
+  getUpdateContent,
   updateContent,
   deleteContent,
 }

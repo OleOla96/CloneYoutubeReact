@@ -43,7 +43,6 @@
   flex: 1;
   flex-direction: column;
   min-width: 150px;
-
 }
 
 .innerHeader-btn {
@@ -62,6 +61,7 @@
   }
 }
 
+// 565px
 @media only screen and (max-width: 35.3125em) {
   .innerHeader-btn {
     display: flex;
@@ -71,11 +71,11 @@
       margin-bottom: 8px;
     }
   }
+}
 
-  .innerHeader {
-
-    .show-bg-icon:first-child {
-      height: fit-content;
-    }
+// 518px
+@media only screen and (max-width: 32.375em) {
+  .innerHeader .show-bg-icon:first-child {
+    height: fit-content;
   }
 }

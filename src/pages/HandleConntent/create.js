@@ -31,7 +31,7 @@ function CreateContent() {
     setDataReq({ ...dataReq, [name]: value })
   }
 
-  const handleRegister = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     setMessage('')
     setSuccessful(false)
@@ -105,7 +105,7 @@ function CreateContent() {
         </>
       ) : (
         <Form
-          onSubmit={handleRegister}
+          onSubmit={handleSubmit}
           ref={(c) => {
             form.current = c
           }}

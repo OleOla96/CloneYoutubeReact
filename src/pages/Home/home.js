@@ -10,7 +10,7 @@ function Home() {
   const [content, setContent] = useState([])
 
   useEffect(() => {
-    CrudSevice.getPublicContent().then((res) => {
+    CrudSevice.getPublicContents().then((res) => {
       if (res.data.data.length) setContent(res.data.data)
     })
   }, [])

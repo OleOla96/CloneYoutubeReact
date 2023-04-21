@@ -12,7 +12,7 @@ function MyChannel() {
   const userInfor = JSON.parse(localStorage.getItem('user'))
 
   useEffect(() => {
-    CrudSevice.getUserContent(userInfor.id).then(
+    CrudSevice.getUserContents(userInfor.id).then(
       (res) => {
         if (res.data.length) setContent(res.data)
       },

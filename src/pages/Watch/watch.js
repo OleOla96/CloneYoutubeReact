@@ -17,7 +17,7 @@ function Watch() {
 
   useEffect(() => {
     const getId = window.location.pathname.split('/').pop()
-    CrudSevice.getPublicContent()
+    CrudSevice.getPublicContents()
       .then((res) => {
         if (res.data.data.length) {
           const resData = res.data.data

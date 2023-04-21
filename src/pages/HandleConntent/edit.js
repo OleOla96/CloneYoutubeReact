@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { useState, useRef } from 'react'
 import Form from 'react-validation/build/form'
 import Input from 'react-validation/build/input'
@@ -5,6 +6,7 @@ import CheckButton from 'react-validation/build/button'
 import CrudSevice from '../../services/crudService'
 import classname from 'classnames/bind'
 import styles from './createEdit.module.scss'
+import { useEffect } from 'react'
 
 const cb = classname.bind(styles)
 
@@ -17,22 +19,38 @@ function EditContent() {
   const [dataReq, setDataReq] = useState(initialData)
   const [stateContent, setStateContent] = useState(false)
   const [successful, setSuccessful] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
   const [message, setMessage] = useState('')
 
+  const navigate = useNavigate()
   const form = useRef()
   const checkBtn = useRef()
+  const id = useRef()
+
+  useEffect(() => {
+    id.current = window.location.pathname.split('/').pop()
+    CrudSevice.getUpdateContent(id.current).then((response) => {
+      setDataReq({
+        ...dataReq,
+        title: response.data.data.title,
+        description: response.data.data.description,
+        linkVideo: response.data.data.linkVideo,
+      })
+      setStateContent(response.data.data.published)
+    })
+  }, [])
 
   const handleInputChange = (event) => {
     const { name, value } = event.target
     setDataReq({ ...dataReq, [name]: value })
   }
 
-  const handleRegister = (e) => {
+  console.log(checkBtn)
+
+  const handleUpdate = (e) => {
     e.preventDefault()
     setSuccessful(false)
     setMessage('')
-
-    const id = window.location.pathname.split('/').pop()
 
     const data = {
       title: dataReq.title,
@@ -43,10 +61,11 @@ function EditContent() {
 
     form.current.validateAll()
 
-    if (checkBtn.context._errors.length === 0) {
-      CrudSevice.updateContent(id, data).then(
-        (res) => {
-          setMessage(res.data.message)
+    if (checkBtn.current.context._errors.length === 0) {
+      CrudSevice.updateContent(id.current, data).then(
+        (response) => {
+          setMessage(response.data.message)
+          setSubmitted(true)
           setSuccessful(true)
         },
         (error) => {
@@ -56,22 +75,42 @@ function EditContent() {
             error.toString()
           setMessage(resMessage)
           setSuccessful(false)
+          setSubmitted(true)
         }
       )
     }
   }
 
   return (
-    <Form
-      onSubmit={handleRegister}
-      ref={(c) => {
-        form.current = c
-      }}
-      className={cb('card-validate')}
-    >
-      {!successful && (
+    <>
+      {submitted ? (
         <>
-          <h1 className={cb('card-title', 'text-center')}>Edit Content</h1>
+          <input type='checkbox' hidden id='check' className='check-overlay' />
+          <div
+            className={
+              successful
+                ? 'alert alert-success message text-center'
+                : 'alert alert-danger message text-center'
+            }
+            role='alert'
+          >
+            <h1>{message}</h1>
+          </div>
+          <label
+            className='backgroud-overlay'
+            htmlFor='check'
+            onClick={() => navigate('/managevideos')}
+          />
+        </>
+      ) : (
+        <Form
+          onSubmit={handleUpdate}
+          ref={(c) => {
+            form.current = c
+          }}
+          className={cb('card-validate')}
+        >
+          <h2 className={cb('card-title', 'text-center')}>Update Content</h2>
           <div className='form-row'>
             <div className='col-md-6 mb-3'>
               <label htmlFor='title'>Title</label>
@@ -110,44 +149,30 @@ function EditContent() {
               />
             </div>
           </div>
-
           <div className='form-group form-check'>
             <input
               type='checkbox'
+              id='state'
+              className='form-check-input'
               checked={stateContent}
               onChange={() => setStateContent(!stateContent)}
-              id='status'
-              className='form-check-input'
             />
-            <label htmlFor='status' className='ml-2'>
+            <label htmlFor='state' className='ml-2'>
               Public
             </label>
           </div>
           <div className='form-group'>
-            <button className={cb('btn-round', 'btn-primary')}>Create</button>
+            <button className={cb('btn-round', 'btn-primary')}>Update</button>
           </div>
-        </>
+          <CheckButton
+            style={{ display: 'none' }}
+            ref={(c) => {
+              checkBtn.current = c
+            }}
+          />
+        </Form>
       )}
-
-      {message && (
-        <div className='form-group'>
-          <div
-            className={
-              successful ? 'alert alert-success' : 'alert alert-danger'
-            }
-            role='alert'
-          >
-            {message}
-          </div>
-        </div>
-      )}
-      <CheckButton
-        style={{ display: 'none' }}
-        ref={(c) => {
-          checkBtn.current = c
-        }}
-      />
-    </Form>
+    </>
   )
 }
 
