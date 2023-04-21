@@ -1,44 +1,35 @@
-// import { useState, useRef, useEffect } from 'react'
-import { createContext } from 'react'
+import { createContext, useState, useEffect } from 'react'
 
 const ActionSideBar = createContext()
 
 function ProviderValue({ children }) {
-  // const [state1, setState1] = useState(true)
-  // const [pathName1, setPathName1] = useState('')
-  // const [pathName2, setPathName2] = useState('')
-  // const getPathname1 = useRef()
-  // let updatePathname1 = window.location.pathname.split('/').pop()
-  // let getPathname2 = window.location.pathname.split('/').slice(-2, -1)
-  // console.log(pathName1)
-  // console.log(typeof updatePathname1)
-  // console.log(updatePathname1)
+  const [state1, setState1] = useState(true)
+  const [width, setWidth] = useState(window.innerWidth)
 
-  // useEffect(() => {
-  //   console.log(pathName1)
+  useEffect(() => {
+    setState1(window.innerWidth >= 1140)
+  }, [width])
 
-  //   getPathname1.current = window.location.pathname.split('/').pop()
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth)
+    }
 
-  //   console.log(getPathname1.current)
+    window.addEventListener('resize', handleResize)
 
-  //   if (getPathname1.current === updatePathname1) {
-  //     setPathName1(updatePathname1)
-  //   }
-  // }, [updatePathname1])
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
-  // useEffect(() => {
-  //   setPathName2(!pathName2)
-  // }, [])
-
-  // const handleState1 = () => {
-  //   setState1(!state1)
-  // }
+  const handleState1 = () => {
+    setState1(!state1)
+  }
 
   const value = {
-    // state1,
-    // handleState1,
-    // pathName1,
-    // pathName2,
+    state1,
+    handleState1,
+    width,
   }
 
   return (

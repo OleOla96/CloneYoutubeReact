@@ -1,37 +1,27 @@
-// import config from '~/config';
-
-// Layouts
-// import { HeaderOnly } from '~/layouts';
+import HeaderOnly from '../layouts/HeaderOnly'
 
 // Pages
-import Login from "../components/Pages/login"
-import Register from "../components/Pages/register"
-import Home from "../components/Pages/home"
-import Watch from "../components/Pages/Watch/Watch"
-import BoardModerator from "../components/Roles/moderator"
-import BoardAdmin from "../components/Roles/admin"
-import CreateContent from "../components/HandleConntent/Create/create"
-import EditContent from "../components/HandleConntent/Edit/edit"
-import MyChannel from "../components/Channel/myChannel"
-import WatchVideoPrivate from "../components/Channel/watchVideoPrivate"
-import ManageVideos from "../components/Channel/manageVideos"
+import Login from '../pages/LoginRegister/login'
+import Register from '../pages/LoginRegister/register'
+import Home from '../pages/Home/home'
+import Watch from '../pages/Watch/watch'
+import BoardAdmin from '../components/Roles/admin'
+import CreateContent from '../pages/HandleConntent/create'
+import EditContent from '../pages/HandleConntent/edit'
+import MyChannel from '../pages/Channel/myChannel'
+import WatchVideoPrivate from '../pages/Channel/watchVideoPrivate'
+import ManageVideos from '../pages/Channel/manageVideos'
 
-// Public routes
-const publicRoutes = [
-    { path: '/', component: Home },
-    { path: 'watch/:id', component: Watch },
-    { path: 'login', component: Login, layout: null },
-    { path: 'register', component: Register, layout: null },
-    { path: 'mychannel', component: MyChannel },
-    { path: 'managevideos', component: ManageVideos },
-    { path: 'managevideos/editcontent/:id', component: EditContent },
-    { path: 'watchvideoprivate/:id', component: WatchVideoPrivate },
-    { path: 'createcontent', component: CreateContent },
-    { path: 'roles/mod', component: BoardModerator },
-    { path: 'roles/admin', component: BoardAdmin },
-    { path: '*', component: Home },
-];
-
-const privateRoutes = [];
-
-export { publicRoutes, privateRoutes };
+export const publicRoutes = [
+  { path: '/', component: Home },
+  { path: 'watch/:id', component: Watch, layout: HeaderOnly },
+  { path: 'login', component: Login, layout: null },
+  { path: 'register', component: Register, layout: HeaderOnly },
+  { path: 'mychannel', component: MyChannel },
+  { path: 'managevideos', component: ManageVideos, layout: HeaderOnly },
+  { path: 'managevideos/editcontent/:id', component: EditContent, layout: HeaderOnly },
+  { path: 'watchvideoprivate/:id', component: WatchVideoPrivate },
+  { path: 'createcontent', component: CreateContent, layout: HeaderOnly },
+  { path: 'roles/admin', component: BoardAdmin },
+  { path: '*', component: Home },
+]

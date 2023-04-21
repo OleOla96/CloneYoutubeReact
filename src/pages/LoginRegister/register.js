@@ -5,16 +5,15 @@ import CheckButton from 'react-validation/build/button'
 import axios from 'axios'
 import { http } from '../../common/http'
 import {
-  required,
   vemail,
   vpassword,
   vusername,
   cpassword,
 } from '../../common/validation'
 import classname from 'classnames/bind'
-import style from './login-register.scss'
+import styles from './loginRegister.module.scss'
 
-const cb = classname.bind(style)
+const cb = classname.bind(styles)
 
 function Register() {
   const [username, setUsername] = useState('')
@@ -29,7 +28,7 @@ function Register() {
 
   const handleRegister = (e) => {
     e.preventDefault()
-    setEmail('')
+    setMessage('')
     setSuccessful(false)
 
     form.current.validateAll()
@@ -37,7 +36,7 @@ function Register() {
     if (checkBtn.current.context._errors.length === 0) {
       axios.post(http + 'auth/signup', { username, email, password }).then(
         (res) => {
-          setEmail(res.data.message)
+          setMessage(res.data.message)
           setSuccessful(true)
         },
         (error) => {
@@ -55,32 +54,13 @@ function Register() {
   }
 
   return (
-    <div className={cb('login-register')}>
-      {message && (
-        <>
-          <input type='checkbox' hidden id='check' className='check-overlay' />
-          <label
-            htmlFor='check'
-            className={
-              successful
-                ? 'alert alert-success message text-center'
-                : 'alert alert-danger message text-center'
-            }
-            role='alert'
-          >
-            <h5>{message}</h5>
-            <span style={{ color: 'black' }}>Press any key.</span>
-          </label>
-          <label className='backgroud-overlay' for='check'></label>
-        </>
-      )}
-      <div className='card-validate card-container'>
+    <div  className={cb('login-register')}>
+      <div className={cb('card-validate')}>
         <img
           src='//ssl.gstatic.com/accounts/ui/avatar_2x.png'
           alt='profile-img'
-          className='profile-img-card'
+          className={cb('profile-img-card')}
         />
-
         <Form
           onSubmit={handleRegister}
           ref={(c) => {
@@ -97,7 +77,8 @@ function Register() {
                   placeholder='e.g. tchalla123'
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  validations={[required, vusername]}
+                  validations={[vusername]}
+                  required
                 />
               </div>
 
@@ -109,7 +90,8 @@ function Register() {
                   placeholder='e.g. tchalla123@wakanda.gov'
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  validations={[required, vemail]}
+                  validations={[vemail]}
+                  required
                 />
               </div>
 
@@ -121,7 +103,8 @@ function Register() {
                   name='password'
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  validations={[required, vpassword]}
+                  validations={[vpassword]}
+                  required
                 />
               </div>
 
@@ -133,14 +116,29 @@ function Register() {
                   name='confirm'
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  validations={[required, cpassword]}
+                  validations={[cpassword]}
+                  required
                 />
               </div>
 
-              <div className='form-group'>
-                <button className='btn btn-primary btn-block'>Sign Up</button>
+              <div className='form-group mgt5'>
+                <button className='btn-round btn-primary btn-block'>
+                  Sign Up
+                </button>
               </div>
             </>
+          )}
+          {message && (
+            <div className='form-group'>
+              <div
+                className={
+                  successful ? 'alert alert-success text-center' : 'alert alert-danger text-center'
+                }
+                role='alert'
+              >
+                {message}
+              </div>
+            </div>
           )}
           <CheckButton
             style={{ display: 'none' }}

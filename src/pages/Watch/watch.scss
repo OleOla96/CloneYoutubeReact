@@ -1,0 +1,88 @@
+.watch {
+  display: flex;
+  width: 100%;
+}
+
+.resize {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+}
+
+.resize iframe,
+.resize object,
+.resize embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.screenVideo {
+  width: 854px;
+  max-width: 100%;
+  height: 482px;
+  max-height: 100%;
+}
+
+.cardSidebar {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  width: 402px;
+  max-width: 100%;
+  height: 98px;
+  border: none;
+  overflow: hidden;
+  border-radius: 0;
+
+  .card-img-top {
+    width: 168px;
+    height: inherit;
+    margin-right: 8px;
+    border-radius: 8px;
+  }
+}
+
+.cardSidebar-title {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 2rem;
+  max-height: 4rem;
+  margin-bottom: 4px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  white-space: normal;
+
+  &:hover {
+    opacity: unset;
+  }
+}
+
+.cardSidebar-des {
+  color: #969696;
+  font-size: 1.2rem;
+  font-weight: lighter;
+  line-height:1.8rem;
+  max-height: 3.6rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  white-space: normal;
+
+  &:hover {
+    opacity: unset;
+  }
+}
+
+.hide {
+  display: none;
+}

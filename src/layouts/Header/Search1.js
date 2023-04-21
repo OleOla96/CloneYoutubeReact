@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import HeadlessTippy from '@tippyjs/react/headless'
+import Tippy from '@tippyjs/react'
+import 'tippy.js/dist/tippy.css'
 import classNames from 'classnames/bind'
 import axios from 'axios'
 
@@ -8,11 +10,11 @@ import { http } from '../../common/http'
 import authHeader from '../../services/auth-header'
 import { SearchIcon } from '../../components/Icons'
 import useDelay from './useDelay'
-import style from './search.module.scss'
+import styles from './search1.module.scss'
 
-const cb = classNames.bind(style)
+const cb = classNames.bind(styles)
 
-function Search() {
+function Search1() {
   const [searchValue, setSearchValue] = useState('')
   const [searchResult, setSearchResult] = useState([])
   const [showResult, setShowResult] = useState(false)
@@ -60,7 +62,7 @@ function Search() {
   }
 
   return (
-    <div className={cb('groupSearch')}>
+    <div className={cb('groupSearch', 'showOnPC')}>
       <HeadlessTippy
         interactive
         visible={showResult && searchResult.length > 0}
@@ -70,7 +72,7 @@ function Search() {
               searchResult.map((result) => (
                 <Link to={result.linkVideo} key={result.id}>
                   <SearchIcon className={cb('bg-icon')} />
-                    {result.title}
+                  {result.title}
                 </Link>
               ))}
           </div>
@@ -96,16 +98,18 @@ function Search() {
           {loading && <i className={cb('loading', 'fa-solid fa-spinner')} />}
         </div>
       </HeadlessTippy>
-      <button
-        className={cb('layoutIcon-search')}
-        onMouseDown={(e) => e.preventDefault()}
-      >
-        <label htmlFor='search' className={cb('layoutIcon-search-sup')}>
-          <SearchIcon className={cb('bg-icon')} />
-        </label>
-      </button>
+      <Tippy content='Search'>
+        <button
+          className={cb('layoutIcon-search')}
+          onMouseDown={(e) => e.preventDefault()}
+        >
+          <label htmlFor='search' className={cb('layoutIcon-search-sup')}>
+            <SearchIcon className={cb('bg-icon')} />
+          </label>
+        </button>
+      </Tippy>
     </div>
   )
 }
 
-export default Search
+export default Search1

@@ -3,7 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import Form from 'react-validation/build/form'
 import Input from 'react-validation/build/input'
 import CheckButton from 'react-validation/build/button'
-import CrudSevice from '../../../services/crudService'
+import CrudSevice from '../../services/crudService'
+import classname from 'classnames/bind'
+import styles from './createEdit.module.scss'
+
+const cb = classname.bind(styles)
 
 function CreateContent() {
   const initialData = {
@@ -63,8 +67,9 @@ function CreateContent() {
     }
   }
 
-  const newTutorial = () => {
+  const newCreate = () => {
     setSubmitted(false)
+    setStateContent(false)
   }
 
   return (
@@ -80,12 +85,12 @@ function CreateContent() {
             }
             role='alert'
           >
-            <h5>{message}</h5>
+            <h1>{message}</h1>
             <p style={{ color: 'black' }}>
               Do you want to continue creating content?
             </p>
-            <div>
-              <button className='btn btn-primary mr-4' onClick={newTutorial}>
+            <div className='confirm'>
+              <button className='btn btn-primary mr-4' onClick={newCreate}>
                 Yes
               </button>
               <button
@@ -96,11 +101,7 @@ function CreateContent() {
               </button>
             </div>
           </div>
-          <label
-            className='backgroud-overlay'
-            htmlFor='check'
-            onClick={() => navigate('/')}
-          ></label>
+          {/* <label className='backgroud-overlay' htmlFor='check' /> */}
         </>
       ) : (
         <Form
@@ -108,9 +109,9 @@ function CreateContent() {
           ref={(c) => {
             form.current = c
           }}
-          className='mt-4'
+          className={cb('card-validate')}
         >
-          <h2 className='card-title text-center'>Create Content</h2>
+          <h2 className={cb('card-title', 'text-center')}>Create Content</h2>
           <div className='form-row'>
             <div className='col-md-6 mb-3'>
               <label htmlFor='title'>Title</label>
@@ -118,7 +119,7 @@ function CreateContent() {
                 type='text'
                 name='title'
                 id='title'
-                className='form-control'
+                className={cb('form-control')}
                 value={dataReq.title}
                 onChange={handleInputChange}
                 required
@@ -128,40 +129,42 @@ function CreateContent() {
               <label htmlFor='linkVideo'>Link Video</label>
               <Input
                 type='text'
-                className='form-control'
+                name='linkVideo'
                 id='linkVideo'
-                required
+                className={cb('form-control')}
                 value={dataReq.linkVideo}
                 onChange={handleInputChange}
-                name='linkVideo'
+                required
               />
             </div>
             <div className='col-md-12 mb-3'>
               <label htmlFor='description'>Description</label>
               <Input
                 type='text'
-                className='form-control'
+                name='description'
                 id='description'
-                required
+                className={cb('form-control')}
                 value={dataReq.description}
                 onChange={handleInputChange}
-                name='description'
+                required
               />
-            </div>
-            <div className='form-group form-check ml-2'>
-              <input
-                type='checkbox'
-                id='state'
-                className='form-check-input'
-                checked={stateContent}
-                onChange={() => setStateContent(!stateContent)}
-              />
-              <label htmlFor='state' className='ml-2'>
-                Public
-              </label>
             </div>
           </div>
-          <button className='btn btn-primary'>Create</button>
+          <div className='form-group form-check'>
+            <input
+              type='checkbox'
+              id='state'
+              className='form-check-input'
+              checked={stateContent}
+              onChange={() => setStateContent(!stateContent)}
+            />
+            <label htmlFor='state' className='ml-2'>
+              Public
+            </label>
+          </div>
+          <div className='form-group'>
+            <button className={cb('btn-round', 'btn-primary')}>Create</button>
+          </div>
           <CheckButton
             style={{ display: 'none' }}
             ref={(c) => {

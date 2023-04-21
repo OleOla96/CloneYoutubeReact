@@ -44,7 +44,7 @@ function MyContents() {
   }
 
   return (
-    <div className='container mgTop'>
+    <div className='container mgt5'>
       {message && (
         <>
           <input type='checkbox' hidden id='check' className='check-overlay' />
@@ -63,8 +63,8 @@ function MyContents() {
           <label className='backgroud-overlay' htmlFor='check'></label>
         </>
       )}
-      <h1>My Contents</h1>
-      <table className='table mt-4'>
+      <h1 className='text-center'>My Contents</h1>
+      <table className='table mgt5'>
         <thead>
           <tr>
             <th scope='col'>Id</th>
@@ -90,12 +90,13 @@ function MyContents() {
                 </Link>
               </td>
               <td>
-                <span
-                  className='btn btn-link button-delete size-icon'
+                <label
+                  htmlFor='check'
+                  className={cb('button-delete', 'size-icon mgb-0')}
                   onClick={() => handleDelete(data.id)}
                 >
-                  <label htmlFor='check' className='fa fa-trash-o'></label>
-                </span>
+                  <span className='fa fa-trash-o'></span>
+                </label>
               </td>
             </tr>
           ))}

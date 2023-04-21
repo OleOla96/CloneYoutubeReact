@@ -1,16 +1,34 @@
-.groupSearch {
+.groupSearchHide {
   display: flex;
   height: var(--heightHeader-item);
+  justify-content: right;
   flex: 1;
+  flex-basis: 1e-9px;
 }
 
-.searchBox,
+.groupSearchShow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+  height: var(--heightHeader);
+  padding: 0 16px;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+  z-index: 11;
+}
+
 .search-result {
   display: flex;
 }
 
 .searchBox {
+  display: flex;
+  flex: 1;
   height: var(--heightHeader-item);
+  margin-left: 8px;
   position: relative;
   flex-direction: row;
 }
@@ -72,9 +90,10 @@
 }
 
 .layoutIcon-search {
-  width: 60px;
+  width: 64px;
   height: var(--heightHeader-item);
   padding: 0 6px;
+  margin-right: 8px;
   line-height: var(--heightHeader-item);
   text-align: center;
   border: 1px solid #d3d3d3;
@@ -88,7 +107,7 @@
   }
 }
 
-.layoutIcon-search .layoutIcon-search-sup {
+.layoutIcon-search-sup {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -96,34 +115,71 @@
   cursor: pointer;
 }
 
+.show-bg-icon {
+  display: inline-block;
+  width: var(--heightHeader-item);
+  height: var(--heightHeader-item);
+  text-align: center;
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
 .bg-icon {
   display: inline-block;
   height: var(--heightHeader-item);
   width: var(--heightHeader-item);
   padding: 8px;
-  pointer-events: none;
   color: var(--color-icon);
 }
 
-@media only screen and (max-width: 41.875em) {
-  
+.mgb-0 {
+  margin-bottom: 0;
 }
 
-
-@media only screen and (min-width: 41.9375em) and (max-width: 46.1875em) {
-  
+.BackIcon-sup {
+  display: none;
 }
 
+.btnSearch-sup:checked ~ .BackIcon-sup {
+  display: inline-block;
+}
+.btnSearch-sup:checked ~ .groupSearchShow {
+  display: flex;
+}
+
+// 740px - 1023px
 @media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
-  .searchBox {
-    flex: 1;
+  .search-result {
     width: 100%;
   }
 }
 
+//screen 1024px
 @media only screen and (min-width: 64em) {
   .searchBox {
+    display: flex;
     flex: 1;
-    width: 540px;
+    max-width: 540px;
+    margin-left: 32px;
+  }
+}
+
+//761px
+@media only screen and (min-width: 47.625em) {
+  .groupSearchHide.showOnMobile {
+    display: none;
+  }
+}
+
+// 440px
+@media only screen and (max-width: 27.5em) {
+  .show-bg-icon.hideOnMoblie {
+    display: none;
   }
 }

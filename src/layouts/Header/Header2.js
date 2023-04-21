@@ -1,9 +1,10 @@
 import classname from 'classnames/bind'
 import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
-import styles from './header.module.scss'
+import styles from './header2.module.scss'
+import { ActionSideBar } from '../ProviderValue'
 import Search1 from './Search1'
 import Search2 from './Search2'
 import {
@@ -12,10 +13,6 @@ import {
   ChannelIcon,
   LogoIcon,
   SidebarIcon,
-  HomeIcon,
-  LibraryIcon,
-  ShortIcon,
-  SubscriptionsIcon,
   SingoutIcon,
   StudioIcon,
   SwitchIcon,
@@ -25,6 +22,7 @@ import {
 const cb = classname.bind(styles)
 
 function Header() {
+  const stateSidebar = useContext(ActionSideBar)
   const [currentUser, setCurrentUser] = useState(undefined)
   const [signin, setSignin] = useState(() => {
     const getPathname = window.location.pathname.split('/').pop()
@@ -51,69 +49,13 @@ function Header() {
   return (
     <nav className={cb('header')}>
       <div className={cb('headerLeft')}>
-        <input
-          type='checkbox'
-          hidden
-          id='checkSidebar'
-          className={cb('btnSidebar-sup')}
-        />
-        <label htmlFor='checkSidebar' className={cb('bg-cl-fade')}></label>
-        <label htmlFor='checkSidebar' className={cb('size-bg', 'mgb-0')}>
-          <span className={cb('show-bg-icon', 'btn')}>
-            <SidebarIcon className={cb('bg-icon')} />
-          </span>
-        </label>
-        <div className={cb('showFull-Sidebar')}>
-          <div className={cb('headerSidebar', 'ml-4')}>
-            <label htmlFor='checkSidebar' className={cb('size-bg', 'mgb-0')}>
-              <span className={cb('btn')}>
-                <SidebarIcon className={cb('bg-icon')} />
-              </span>
-            </label>
-            <div className={cb('logoHeader')}>
-              <Link to={'/'} className={cb('navbarBrand')}>
-                <LogoIcon className={cb('brandIcon')} />
-              </Link>
-              <span className={cb('brandIcon-sup')}>VN</span>
-            </div>
-          </div>
-          <Link to={'/home'} className={cb('btnSidebar')}>
-            <div className={cb('content-inline')}>
-              <HomeIcon className={cb('bg-icon')} />
-            </div>
+        <button
+          className={cb('show-bg-icon')}
+          onClick={stateSidebar.handleState1}
+        >
+          <SidebarIcon className={cb('bg-icon')} />
+        </button>
 
-            <div className={cb('content-inline')}>
-              <span className={cb('style-text')}>Home</span>
-            </div>
-          </Link>
-          <Link to={'/shorst'} className={cb('btnSidebar')}>
-            <div className={cb('content-inline')}>
-              <ShortIcon className={cb('bg-icon')} />
-            </div>
-
-            <div className={cb('content-inline')}>
-              <span className={cb('style-text')}>Shorst</span>
-            </div>
-          </Link>
-          <Link to={'/subscriptions'} className={cb('btnSidebar')}>
-            <div className={cb('content-inline')}>
-              <SubscriptionsIcon className={cb('bg-icon')} />
-            </div>
-
-            <div className={cb('content-inline')}>
-              <span className={cb('style-text')}>Subscriptions</span>
-            </div>
-          </Link>
-          <Link to={'/library'} className={cb('btnSidebar')}>
-            <div className={cb('content-inline')}>
-              <LibraryIcon className={cb('bg-icon')} />
-            </div>
-
-            <div className={cb('content-inline')}>
-              <span className={cb('style-text')}>Library</span>
-            </div>
-          </Link>
-        </div>
         <div className={cb('logoHeader')}>
           <Link to={'/'} className={cb('navbarBrand')}>
             <LogoIcon className={cb('brandIcon')} />
@@ -124,30 +66,27 @@ function Header() {
       <div className={cb('headerCenter')}>
         <Search1 />
         <Search2 />
-        <div className={cb('size-bg')}>
-          <Tippy content='Search with your voice'>
-            <button className={cb('show-bg-icon')}>
-              <VoiceIcon className={cb('bg-icon')} />
-            </button>
-          </Tippy>
-        </div>
+
+        <Tippy content='Search with your voice'>
+          <button className={cb('show-bg-icon', 'ml-2')}>
+            <VoiceIcon className={cb('bg-icon')} />
+          </button>
+        </Tippy>
       </div>
       {currentUser ? (
         <div className={cb('headerRight')}>
-          <div className={cb('size-bg')}>
-            <Tippy content='Create'>
-              <Link to={'/createcontent'} className={cb('show-bg-icon')}>
-                <CameraIcon className={cb('bg-icon')} />
-              </Link>
-            </Tippy>
-          </div>
-          <div className={cb('size-bg', 'hideOnMoblie')}>
-            <Tippy content='Notifications'>
-              <button className={cb('show-bg-icon')}>
-                <BellIcon className={cb('bg-icon')} />
-              </button>
-            </Tippy>
-          </div>
+          <Tippy content='Create'>
+            <Link to={'/createcontent'} className={cb('show-bg-icon')}>
+              <CameraIcon className={cb('bg-icon')} />
+            </Link>
+          </Tippy>
+
+          <Tippy content='Notifications'>
+            <button className={cb('show-bg-icon', 'hideOnMoblie')}>
+              <BellIcon className={cb('bg-icon')} />
+            </button>
+          </Tippy>
+
           <input
             type='checkbox'
             hidden

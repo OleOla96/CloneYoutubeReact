@@ -1,18 +1,17 @@
-.login-register {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.mgTop {
-  margin-top: var(--heightHeader);
-}
-
-.container.mgTop {
+.login-register{
   display: flex;
+  width: 100%;
+  height: 100vh;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+}
+
+.logo-login {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
+  padding: 16px;
 }
 
 .profile-img-card {
@@ -25,4 +24,6 @@
   border-radius: 50%;
 }
 
-
+a:hover {
+  opacity: 0.9;
+}

@@ -1,19 +1,24 @@
 .container {
   display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 0 12px;
   margin-top: var(--heightHeader);
+
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    margin: -2px 16px 8px;
+  }
 }
 
 @media only screen and (max-width: 46.1875em) {
-  
 }
 
 @media only screen and (min-width: 46.25em) and (max-width: 63.9375em) {
-  
 }
 
-@media only screen and (min-width: 64em) {
-
+// 1115px
+@media only screen and (max-width: 69.6875em) {
+  
 }
