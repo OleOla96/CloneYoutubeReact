@@ -3,8 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import Form from 'react-validation/build/form'
 import Input from 'react-validation/build/input'
 import CheckButton from 'react-validation/build/button'
-import axios from 'axios'
-import { http } from '../../common/http'
+import AuthSevice from '../../services/authService'
 import classname from 'classnames/bind'
 import styles from './loginRegister.module.scss'
 import { LogoLoginGoogle } from '../../components/Icons'
@@ -31,8 +30,7 @@ function Login() {
     form.current.validateAll()
 
     if (checkBtn.current.context._errors.length === 0) {
-      axios
-        .post(http + 'auth/signin', { username, password })
+      AuthSevice.signIn(username, password)
         .then((res) => {
           if (res.data.accessToken) {
             localStorage.setItem('user', JSON.stringify(res.data))

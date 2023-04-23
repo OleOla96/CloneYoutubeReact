@@ -48,10 +48,10 @@ function CreateContent() {
 
     if (checkBtn.current.context._errors.length === 0) {
       CrudSevice.createContent(data)
-        .then((response) => {
-          setMessage(response.data.message)
+        .then((res) => {
+          setMessage(res.data.message)
           setSubmitted(true)
-          if (response) {
+          if (res) {
             setDataReq('')
             setSuccessful(true)
           } else {
@@ -59,10 +59,10 @@ function CreateContent() {
             setMessage('Can not connect to server')
           }
         })
-        .catch((response) => {
+        .catch((res) => {
           setSubmitted(true)
           setSuccessful(false)
-          setMessage(response.data.message)
+          setMessage(res.data.message)
         })
     }
   }

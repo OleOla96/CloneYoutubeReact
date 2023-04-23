@@ -76,13 +76,13 @@ function Header() {
       {currentUser ? (
         <div className={cb('headerRight')}>
           <Tippy content='Create'>
-            <Link to={'/createcontent'} className={cb('show-bg-icon')}>
+            <Link to={'/createcontent'} className={cb('show-bg-icon', 'mr-3')}>
               <CameraIcon className={cb('bg-icon')} />
             </Link>
           </Tippy>
 
           <Tippy content='Notifications'>
-            <button className={cb('show-bg-icon', 'hideOnMoblie')}>
+            <button className={cb('show-bg-icon', 'hideOnMoblie', 'mr-3')}>
               <BellIcon className={cb('bg-icon')} />
             </button>
           </Tippy>

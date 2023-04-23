@@ -29,14 +29,14 @@ function EditContent() {
 
   useEffect(() => {
     id.current = window.location.pathname.split('/').pop()
-    CrudSevice.getUpdateContent(id.current).then((response) => {
+    CrudSevice.getUpdateContent(id.current).then((res) => {
       setDataReq({
         ...dataReq,
-        title: response.data.data.title,
-        description: response.data.data.description,
-        linkVideo: response.data.data.linkVideo,
+        title: res.data.data.title,
+        description: res.data.data.description,
+        linkVideo: res.data.data.linkVideo,
       })
-      setStateContent(response.data.data.published)
+      setStateContent(res.data.data.published)
     })
   }, [])
 
@@ -63,8 +63,8 @@ function EditContent() {
 
     if (checkBtn.current.context._errors.length === 0) {
       CrudSevice.updateContent(id.current, data).then(
-        (response) => {
-          setMessage(response.data.message)
+        (res) => {
+          setMessage(res.data.message)
           setSubmitted(true)
           setSuccessful(true)
         },

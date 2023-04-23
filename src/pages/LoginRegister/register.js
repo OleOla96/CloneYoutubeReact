@@ -2,8 +2,6 @@ import { useRef, useState } from 'react'
 import Form from 'react-validation/build/form'
 import Input from 'react-validation/build/input'
 import CheckButton from 'react-validation/build/button'
-import axios from 'axios'
-import { http } from '../../common/http'
 import {
   vemail,
   vpassword,
@@ -12,6 +10,7 @@ import {
 } from '../../common/validation'
 import classname from 'classnames/bind'
 import styles from './loginRegister.module.scss'
+import AuthSevice from '../../services/authService'
 
 const cb = classname.bind(styles)
 
@@ -34,7 +33,7 @@ function Register() {
     form.current.validateAll()
 
     if (checkBtn.current.context._errors.length === 0) {
-      axios.post(http + 'auth/signup', { username, email, password }).then(
+      AuthSevice.signUp(username, email, password).then(
         (res) => {
           setMessage(res.data.message)
           setSuccessful(true)

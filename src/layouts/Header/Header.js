@@ -58,14 +58,14 @@ function Header() {
           className={cb('btnSidebar-sup')}
         />
         <label htmlFor='checkSidebar' className={cb('bg-cl-fade')}></label>
-        <label htmlFor='checkSidebar' className={cb('size-bg', 'mgb-0')}>
+        <label htmlFor='checkSidebar' className={cb('mgb-0')}>
           <span className={cb('show-bg-icon', 'btn')}>
             <SidebarIcon className={cb('bg-icon')} />
           </span>
         </label>
         <div className={cb('showFull-Sidebar')}>
           <div className={cb('headerSidebar', 'ml-4')}>
-            <label htmlFor='checkSidebar' className={cb('size-bg', 'mgb-0')}>
+            <label htmlFor='checkSidebar' className={cb('mgb-0')}>
               <span className={cb('btn')}>
                 <SidebarIcon className={cb('bg-icon')} />
               </span>
@@ -124,7 +124,7 @@ function Header() {
       <div className={cb('headerCenter')}>
         <Search1 />
         <Search2 />
-        <div className={cb('size-bg')}>
+        <div className={cb('')}>
           <Tippy content='Search with your voice'>
             <button className={cb('show-bg-icon')}>
               <VoiceIcon className={cb('bg-icon')} />
@@ -134,20 +134,16 @@ function Header() {
       </div>
       {currentUser ? (
         <div className={cb('headerRight')}>
-          <div className={cb('size-bg')}>
             <Tippy content='Create'>
-              <Link to={'/createcontent'} className={cb('show-bg-icon')}>
+              <Link to={'/createcontent'} className={cb('show-bg-icon', 'mr-3')}>
                 <CameraIcon className={cb('bg-icon')} />
               </Link>
             </Tippy>
-          </div>
-          <div className={cb('size-bg', 'hideOnMoblie')}>
             <Tippy content='Notifications'>
-              <button className={cb('show-bg-icon')}>
+              <button className={cb('show-bg-icon', 'hideOnMoblie', 'mr-3')}>
                 <BellIcon className={cb('bg-icon')} />
               </button>
             </Tippy>
-          </div>
           <input
             type='checkbox'
             hidden
